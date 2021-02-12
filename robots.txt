@@ -1,0 +1,56 @@
+User-agent: Yandex
+Disallow: /*_openstat
+Disallow: /*from=adwords
+Disallow: /*utm_source
+Disallow: /editus.php?do=register
+Disallow: /editus.php?do=recover_password
+
+Disallow: /items/
+Disallow: /uploads/
+Dissalow: /sessions/
+Dissalow: /include/
+Dissalow: /templates/
+Dissalow: /admin/
+Dissalow: /bill/
+Dissalow: /emailfiles/
+
+Dissalow: /promo/
+
+User-agent: Googlebot
+Disallow: /*_openstat
+Disallow: /*from=adwords
+Disallow: /*utm_source
+Disallow: /editus.php?do=register
+Disallow: /editus.php?do=recover_password
+
+Disallow: /items/
+Disallow: /uploads/
+Dissalow: /sessions/
+Dissalow: /include/
+Dissalow: /templates/
+Dissalow: /admin/
+Dissalow: /bill/
+Dissalow: /emailfiles/
+
+Dissalow: /promo/
+
+User-agent: *
+Disallow: /*_openstat
+Disallow: /*from=adwords
+Disallow: /*utm_source
+Disallow: /editus.php?do=register
+Disallow: /editus.php?do=recover_password
+
+Disallow: /items/
+Disallow: /uploads/
+Dissalow: /sessions/
+Dissalow: /include/
+Dissalow: /templates/
+Dissalow: /admin/
+Dissalow: /bill/
+Dissalow: /emailfiles/
+
+Dissalow: /promo/
+
+Sitemap: https://editus.ru/sitemap.xml
+Host: https://editus.ru

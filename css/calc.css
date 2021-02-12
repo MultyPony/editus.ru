@@ -1,0 +1,44 @@
+
+div.summary {
+    float: left;
+    width: 550px;
+    display: inline;
+}
+
+div.wrap {
+    float: left;
+    width: 100%;
+}
+
+div.preview {
+    display: inline;
+}
+
+div.content {
+    margin-top: 30px;
+    float: left;
+}
+
+div.controls {
+    float: left;
+    width: 550px;
+    display: block;
+}
+.controls p{
+	padding-top:5px;
+}
+input {
+    border: 0;
+    color: #ff0000;
+    font-weight: bold;
+	font-size:10pt;
+}
+
+#spine {
+    float: left;
+    width: 560px;
+    margin-left: -670px;
+    display: inline;
+    background-color: #cccccc;
+	
+}

@@ -1,0 +1,152 @@
+body { padding: 0 0 60px 0; margin-top: 50px; margin-left:20px; font-family: Arial, Tahoma, Verdana, Helvetica; font-size: 11pt; color: #666666; }
+table.main	{ font-size: 11pt; }
+tr			{ vertical-align: top; }
+a		{ color: #666666; }
+a:hover		{ color: #FF0000; }
+
+table.content {
+	font-family: Arial, Tahoma, Verdana, Helvetica;
+	font-size: 95%;
+	text-align: left;
+}
+
+a.topmenu {
+	font-size: 8pt;
+	font-family: Arial, Tahoma;
+	font-weight: bold;
+	color: #333333;
+}
+a.topmenu:hover {
+	font-size: 8pt;
+	font-family:  Arial, Tahoma;
+	font-weight: bold;
+	color: #FF0000;
+}
+a.topmenuactive {
+	font-size: 8pt;
+	font-family:  Arial, Tahoma;
+	font-weight: bold;
+	color: #FF0000;
+}
+a.topmenuactive:hover {
+	font-size: 8pt;
+	font-family:  Arial, Tahoma;
+	font-weight: bold;
+	color: #FF0000;
+}
+.megatitle {
+	font-size: 30pt;
+	font-family: Palatino Linotype, Book Antiqua, Times New Roman;
+	color: #000000;
+	padding-top: 50pt;
+	margin: 0;
+	padding-bottom: 0;
+	border: 0;
+}
+.tabletitle {
+	font-size: 15pt;
+	font-family: Palatino Linotype, Book Antiqua, Times New Roman;
+	color: #000000;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.title {
+	font-size: 11pt;
+	font-family: Arial, Tahoma;
+	color: #000000;
+	text-decoration: none;
+	float: right;
+	padding-bottom: 50pt;
+	margin: 0;
+	padding-top: 0;
+	border: 0;
+}
+.head {
+	font-size: 95%;
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+
+}
+.text {
+	font-size: 10pt;
+	font-family: Tahoma;
+	color: #333333;
+	text-decoration: none;
+}
+#decorate {
+	font-family: Palatino Linotype, Book Antiqua;
+	font-weight: bold;
+	color: #FF0000;
+	text-decoration: none;
+}
+#copyright	{ 
+	font-size: 80%; 
+	color: #CCCCCC; 
+	margin-top: 80px;
+	text-decoration: none; 
+}
+#infotable	{ 
+	font-size: 80%; 
+	color: #666666; 
+	text-decoration: none; 
+}
+#submit {
+	background-color: #CCCCCC;
+	color: #666666;
+	width: 200px;
+	height: 24px;
+}
+.order {
+	padding-top: 10px;
+	font-size: 10pt;
+	font-family: Tahoma;
+	color: #666666;
+	text-decoration: none;
+	text-align: right;
+	border-collapse: collapse;
+	border: none;
+	
+}
+.form {
+	padding-top:10px;
+	width: 200px;
+}
+
+.form input {
+	width: 200px;
+}
+
+.form select {
+	color: #666666;
+	width: 200px;
+}
+
+.form textarea {
+	width: 200px;
+	height: 100px;
+}
+
+.form #inp {
+	border: none;
+	width: 100px;
+}
+
+.button {
+border-radius:20px;
+-moz-border-radius:20px;
+-khtml-border-radius:20px;
+-webkit-border-radius: 20px;
+    cursor:pointer;
+padding: 5px;
+position: relative;
+border:3px solid #cccccc;
+	background-color: #ff3300;
+	font-size: 10pt;
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #ffffff;
+	text-decoration: none;
+}
