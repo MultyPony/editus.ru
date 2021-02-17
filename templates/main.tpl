@@ -15,7 +15,7 @@
     <!-- SCRIPTS -->
     <?php echo $headscripts; ?>
     <script>$(function() { $('#site-navigation > ul > li').removeClass('current-menu-item').eq(6).addClass('current-menu-item') });</script>
-
+    <script type="text/javascript" src="cdek/widjet.js" charset="utf-8" id="ISDEKscript" ></script>
     </head>
 
 

@@ -93,6 +93,7 @@ $(function(){
             }
         });
         $('#delivery input[name=typedeliv]').change(function(){
+            $('#pvz_cdek').fadeOut();
             $('#newaddress').fadeOut();
             $('#deliveryaddress').fadeOut();
             $('#providers').fadeOut();
@@ -116,7 +117,7 @@ $(function(){
                 else{
                     calctotalos3(true);
                 }
-            }else{
+            } else if ($('#delivery input[name=typedeliv]:checked').val()=='deliver'){
                 $('#selectaddress').show();
                 $('#selectaddressbill').hide();
                 $('#deliveryaddress').fadeIn();
@@ -139,7 +140,32 @@ $(function(){
                     calctotalos3();
                 }
             }
+            else if ($('#delivery input[name=typedeliv]:checked').val()=='pickup-point') {
+                if (window.pvz == undefined) {
+                    $('#os3_total').fadeOut();
+                    $('#completeorder').fadeOut();
+                }
+                else {
+                    $('#pvz_cdek').fadeIn();
+                    $('#os3_total').fadeIn();
+                    $('#completeorder').fadeIn();
+
+                    //Вывести итог с учетом доставки ПВЗ
+                    $('#prwithdeliv').text(parseInt($('#totalcosts').val()) + parseInt(window.pvz.price));
+                }
+            }
         });
+
+        window.showPvzFields = function() {
+            $('#os3_pvz_address').val(`${window.pvz.cityName}, ${window.pvz.PVZ.Address}`);
+            $('#os3_delivery_price').val(window.pvz.price + ' руб.');
+            $('#pvz_cdek').fadeIn();
+            // Показать итог стоимость и кнопку оплатить
+            $('#prwithdeliv').text(parseInt($('#totalcosts').val()) + parseInt(window.pvz.price));
+            $('#os3_total').fadeIn();
+            $('#completeorder').fadeIn();
+        }
+
         $('#os3_addresses_sel').change(function(){
             if ($(this).val()=='new'){
                 $('#newaddress').fadeIn();

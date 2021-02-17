@@ -1,0 +1,38 @@
+
+.calc summary {
+    width: 100%;
+    display: inline;
+}
+
+.calc div.wrap {
+    float: left;
+    width: 100%;
+}
+
+.calc preview {
+    display: inline;
+}
+
+.calc content {
+    margin-top: 17px;
+	text-align:center;
+}
+
+.calc div.controls {
+    width: 100%;
+    display: block;
+}
+
+
+.calc input {
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+}
+.calc #spine {
+    float: left;
+    width: 560px;
+    margin-left: -670px;
+    display: inline;
+    background-color: #999999;
+}

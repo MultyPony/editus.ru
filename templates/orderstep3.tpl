@@ -37,6 +37,10 @@
                                                 <label class="inline-label">
                                                     <input type="radio" name="typedeliv" value="deliver" /> <?php echo _OS3_DELIV; ?>
                                                 </label>
+
+                                                <label class="inline-label cdek-label">
+                                                    <input type="radio" name="typedeliv" value="pickup-point" onclick='cartWidjet.open()'/> <?php echo _OS3_PICKUP_POINT; ?>
+                                                </label>
                 
             </div>
            <?php if ($isorg==1){?>
@@ -52,6 +56,32 @@
             <?php }else{?>
                 <input type="hidden" name="isorg" value="0" />
             <?php } ?>
+            
+            <div id="pvz_cdek" style="display: none;">
+                <div>
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right; width:35%">
+                                    <span id="show_pvz_address">Адрес ПВЗ:</span>
+                                </td>
+                                <td style="text-align: left; vertical-align: middle;">
+                                    <input id="os3_pvz_address" name="os3_pvz_address" readonly value="<?php echo round($massa/1000,1); ?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; width:35%">
+                                    <span id="show_delivery_price">Стоимость доставки:</span>
+                                </td>
+                                <td style="text-align: left; vertical-align: middle;">
+                                    <input id="os3_delivery_price" name="os3_delivery_price" readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>             
+            </div>
+
             <div id="deliveryaddress" style="display: none;">
                 <div>
                     <table width="100%">
@@ -181,6 +211,28 @@
             </div>
         </form>
     </fieldset>
+    <script type="text/javascript">
+        var cartWidjet = new ISDEKWidjet({
+            defaultCity: 'auto',
+            cityFrom: 'Москва',
+            hidedelt: true,
+            popup: true,
+            goods: [{
+                length: 25,
+                width: 17,
+                height: 7,
+                weight: <?php echo round($massa/1000,1); ?>
+            }],
+            onChoose: function(wat) {
+                window.pvz = wat;
+                window.showPvzFields();
+
+            },
+        });
+
+
+
+    </script>
     <?php
 }
 if ($mode == 2) {

@@ -52,5 +52,5 @@ Dissalow: /emailfiles/
 
 Dissalow: /promo/
 
-Sitemap: https://editus.ru/sitemap.xml
-Host: https://editus.ru
+Sitemap: https://editus-dev.ru/sitemap.xml
+Host: https://editus-dev.ru
