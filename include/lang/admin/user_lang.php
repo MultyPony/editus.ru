@@ -61,7 +61,7 @@ define('_ADDGROUPS','Добавить группу');
 define('_EDITGROUP','Изменить');
 define('_ADMINACCESS','Доступ в админ.часть');
 define('_DELETEGROPUP','Удалить группу');
-define('_EDITGROUP','Сохранить');
+define('_SAVEGROUP','Сохранить');
 
 define('_MENUITEM','Пункт меню');
 define('_FUNCTION','Функция');
@@ -80,7 +80,7 @@ define('_ADDROLE','Добавить роль');
 
 define('_FUNCNAMEDESC','Название функции(описание)');
 define('_ACCESS','Разрешение');
-define('_EDITROLE','Изменить');
+define('_EDITROLE2','Изменить');
 
 
 

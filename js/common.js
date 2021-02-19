@@ -159,8 +159,10 @@ $(function(){
         window.showPvzFields = function() {
             $('#os3_pvz_address').val(`${window.pvz.cityName}, ${window.pvz.PVZ.Address}`);
             $('#os3_delivery_price').val(window.pvz.price + ' руб.');
+            $('#hidden_del_price').val(window.pvz.price);
             $('#pvz_cdek').fadeIn();
             // Показать итог стоимость и кнопку оплатить
+            // $('#os3_providers_sel option:selected').val(2)
             $('#prwithdeliv').text(parseInt($('#totalcosts').val()) + parseInt(window.pvz.price));
             $('#os3_total').fadeIn();
             $('#completeorder').fadeIn();

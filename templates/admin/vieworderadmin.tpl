@@ -20,7 +20,11 @@
 <!--            <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_BINDPRICE;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $data['orderPriceBind'].' '._VOA_RUB; ?></td></tr>-->
         <?php if ($data['DeliveryProviderId']==0){?>
                 <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_TYPEDELIVER;?></td><td style="text-align: left; vertical-align: middle;"><?php echo _VOA_PICKUP; ?></td></tr>
-        <?php }else{ ?>
+        <?php } else if ($data['DeliveryProviderId']==18) { ?>
+                <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_PROVIDER;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $namedeliv; ?></td></tr>
+                <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_ADDRESS;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $dataadres['addressStr']; ?></td></tr>
+                <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_DELIVPRICE;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $data['orderPriceDeliver'].' '._VOA_RUB; ?></td></tr>
+        <?php } else { ?>
                 <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_PROVIDER;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $namedeliv; ?></td></tr>
                 <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_ADDRESS;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $dataadres['CountryName'].', '.$dataadres['RegionName'].', '.$dataadres['addressIndex'].', '._VOA_CT.$dataadres['addressCity'].', '._VOA_STR.$dataadres['addressStr'].', '._VOA_H.$dataadres['addressHouse'].'('._VOA_B.$dataadres['addressBuild'].'), '._VOA_APT.$dataadres['addressApt'].' ( '.$dataadres['addressContact'].' - '.$dataadres['addressTelephone'].' )'; ?></td></tr>
                 <tr><td style="text-align: right; vertical-align: middle; width: 250px;"><?php echo _VOA_DELIVPRICE;?></td><td style="text-align: left; vertical-align: middle;"><?php echo $data['orderPriceDeliver'].' '._VOA_RUB; ?></td></tr>    

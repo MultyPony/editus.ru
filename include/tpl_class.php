@@ -40,7 +40,12 @@ class Template {
             if ($e==1){
                 $this->vars[$key]=$var;
             }else{
-                $this->vars[$key].=$var;
+                // if (($this->vars[$key]) != undefined) {
+                    $this->vars[$key].=$var;
+                // }
+                // else {
+                    // $this->vars[$key]=$var;
+                // }
             }
         }
     }

@@ -1,5 +1,8 @@
 <?php
 try {
+    // error_reporting(E_ERROR | E_PARSE);
+
+
 //       ini_set( "display_errors", "1" );
 //ini_set( "error_reporting", "2047" );
     include_once '../include/engine_class.php';

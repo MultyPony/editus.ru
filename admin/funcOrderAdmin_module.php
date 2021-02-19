@@ -118,6 +118,17 @@ function vieworderadmin(){
                               DeliveryCountries.CountryId = UsersDeliveryAddreses.addressCountry AND 
                               DeliveryRegions.RegionId = UsersDeliveryAddreses.addressRegion ");
             $dataadres = $db->fetch_array();
+            if ($data['DeliveryProviderId']==18) {
+                // $db->query("SELECT addressStr
+                //         FROM UsersDeliveryAddreses
+                //         WHERE addressId = '". $data['addressId'] ."'");
+                
+                $db->query("SELECT addressStr
+                        FROM UsersDeliveryAddreses
+                        WHERE addressIndex = '" . intval($_GET['o']) . "'");
+
+                $dataadres = $db->fetch_array();
+            }
         }
         $dhref[]='../include/get.php?uid='.$data['userId'].'&amp;oid='.$data['orderId'].'&amp;o=cover';
         $dhref[]='../include/get.php?uid='.$data['userId'].'&amp;oid='.$data['orderId'].'&amp;o=coverlayot';

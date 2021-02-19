@@ -66,7 +66,7 @@
                                     <span id="show_pvz_address">Адрес ПВЗ:</span>
                                 </td>
                                 <td style="text-align: left; vertical-align: middle;">
-                                    <input id="os3_pvz_address" name="os3_pvz_address" readonly value="<?php echo round($massa/1000,1); ?>">
+                                    <input id="os3_pvz_address" type="text" name="os3_pvz_address" readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -74,7 +74,8 @@
                                     <span id="show_delivery_price">Стоимость доставки:</span>
                                 </td>
                                 <td style="text-align: left; vertical-align: middle;">
-                                    <input id="os3_delivery_price" name="os3_delivery_price" readonly>
+                                    <input id="os3_delivery_price" type="text" readonly>
+                                    <input id="hidden_del_price" type="hidden" value="0" name="os3_delivery_price"/>
                                 </td>
                             </tr>
                         </tbody>

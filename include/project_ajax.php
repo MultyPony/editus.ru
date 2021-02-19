@@ -64,6 +64,9 @@ try {
         }
         $db->query("SELECT PaperTypeId, PaperTypeName, PaperTypeWeight FROM PaperTypeCostsBlock WHERE ".$sql);
         while ($row = $db->fetch_array()) {
+            if (!isset($res)) {
+                $res = '';
+            }
             $res .= '<td><label for="pb_'.$row['PaperTypeId'].'"><img src="img/paper.png" border="0" /><br />'.$row['PaperTypeName'].'<br />'.$row['PaperTypeWeight'].' гр/м<sup>2</sup></label>
 			<input id="pb_'.$row['PaperTypeId'].'" type="radio" name="paperblock" value="'.$row['PaperTypeId'].'" />
 			</td>';
@@ -91,6 +94,9 @@ try {
             <tr align="center">     <?php   
         $db->query("SELECT formatId, formatName, formatWidth, formatHeight FROM PaperFormat WHERE usedForBlock = '1'");
         while ($row = $db->fetch_array()) {
+            if (!isset($res1)) {
+                $res1 = '';
+            }
             $res1 .= '<td><label for="pf_'.$row['formatId'].'"><img src="img/paperformat_'.$row['formatId'].'.png" border="0" /></label><label for="pf_'.$row['formatId'].'">'.$row['formatName'].'</label>'.$row['formatWidth'].' x '.$row['formatHeight'].' мм<br /><p><input id="pf_'.$row['formatId'].'" type="radio" class="radio checker" name="size" value="'.$row['formatId'].'" /></p></td>';
            
         }
@@ -99,14 +105,14 @@ try {
         </tr>
         <tr align="center">
         <?php
-        echo $res2;
+        echo (isset($res2) ? $res2 : '');
         ?></tr>
         <tr align="center" class="infotable"><?php
-        echo $res3;
+        echo (isset($res3) ? $res3 : '');
         ?></tr>
             <tr align="center">
         <?php
-        echo $res4;
+        echo (isset($res4) ? $res4 : '');
         ?></tr>
         </table><?php
     }    
@@ -115,6 +121,9 @@ try {
         $db->query("SELECT BindingType.BindingId, BindingType.BindingName FROM BindingType WHERE BindingType.CoverType = '".$db->mres($_POST['cover'])."' AND BindingType.BindingMin <= '".intval($_POST['pages'])."' AND BindingType.BindingMax >= '".intval($_POST['pages'])."' ");
         if ($db->num_rows() >= 1){
             while ($row = $db->fetch_array()) {
+                if (!isset($res)){
+                    $res = '';
+                }
                 $res .='<td><label for="bt_'.$row['BindingId'].'"><img src="img/bindtype_'.$row['BindingId'].'.jpg" border="0" /></label><label for="bt_'.$row['BindingId'].'" >'.$row['BindingName'].'</label><input id="bt_'.$row['BindingId'].'" type="radio" name="binding" value="'.$row['BindingId'].'" /></td>';
  
             }?> 
@@ -144,6 +153,9 @@ try {
                 if ($row['label']=='addtoisdpack'){
                     $row['AdditionalServiceCost'] = ceil($row['AdditionalServiceCost']) + ceil($_POST['addtoisdpack']);
                 }
+                if (!isset($res)) {
+                    $res = '';
+                }
                 $res .='<tr><td><input type="hidden" id="'.$row['AdditionalServiceId'].'" name="'.$row['AdditionalServiceId'].'" value="'.ceil($row['AdditionalServiceCost']).'" /><label><input type="checkbox" name="additionalservice[]" value="'.$row['AdditionalServiceId'].'" /> '.$row['AdditionalServiceName'];
                 if (strlen($row['helphref'])>3){
                     $res .=' ( <a href="'.$row['helphref'].'" target="_blank">?</a> ) ';
@@ -164,7 +176,9 @@ try {
 //        }else{
 //            $pr_additionalcover = 0;
 //        }
-        if (intval($_POST['printtype_block'])!='color' && intval($_POST['printtype_block'])!='black'){
+        
+        // if (intval($_POST['printtype_block'])!='color' && intval($_POST['printtype_block'])!='black'){
+        if ($_POST['printtype_block']!='color' && $_POST['printtype_block']!='black'){
             echo '<p class="tabletitle"><font color="#FF0000"><b>Выберите тип печати</b></font></p>
                   <script type="text/javascript">$("input[type=submit]").hide();</script>';
             return;
@@ -342,6 +356,7 @@ try {
 		
 		$d = date ( "d.m.Y" , mktime(0, 0, 0, date("m"), date("d")+$srok, date("Y")));
 	
+        $fixbind = isset($fixbind) ? $fixbind : "";
             echo '<table width="100%">
                     <tr>
                         <td colspan="2">

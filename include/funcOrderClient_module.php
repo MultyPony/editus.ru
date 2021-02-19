@@ -286,6 +286,7 @@ function orderstep1(&$e, &$t) {
             $e->do ='listprojects';
             $tpl = new Template();
             $tpl->set_path('templates/');
+            // $addedads = isset($addedads) ? $addedads : '';
             $tpl->set_vars(array('sizep'=>$sizep[0],'ftemplate' => $ftemplate, 'addedads' => $addedads, 'hrefblock' => $href['tbbHref'], 'hrefcover' => $hrefcover, 'author' => $author[0] . ' ' . $author[1], 'action' => Main_config::$main_file_name . '?do=orderstep2&amp;o=' . intval($_GET['o']), 'orderid' => intval($_GET['o']), 'addservice' => $addservice, 'userid' => $_SESSION['userId'], 'data' => $data));
             $tpl->fetch('orderstep1.tpl');
             return $tpl->get_tpl();
@@ -1318,14 +1319,55 @@ function orderstep4(&$e, &$t, &$u) {
                         $delivcost = $row['DeliveryProviderCosts']+$row['OverQuote']*ceil(($massa/1000)-1);
                     }
                     $delivprovid = $row['DeliveryProviderId'];
+                    
                 } else {
                     $delivcost = 0;
                     $delivprovid = 0;
                 }
 
+                if ($_POST['typedeliv']=='pickup-point') {
+                    $delivprovid = 18;
+                    $delivcost = intval($_POST['os3_delivery_price']);
+
+                    $db->query("INSERT INTO UsersDeliveryAddreses 
+                                SET userId = '" . $_SESSION['userId'] . "',
+                                    addressIndex = '" . intval($_GET['o']) . "',
+                                    addressStr = '" . $db->mres($_POST['os3_pvz_address']) . "'");
+                    $db->query("SELECT LAST_INSERT_ID()");
+                    $sel = $db->fetch_array();
+              
+                //     $db->query("INSERT INTO UsersDeliveryAddreses 
+                //                 SET userId = '" . $_SESSION['userId'] . "',
+                //                     addressContact = '0', 
+                //                     addressTelephone = '0',
+                //                     addressCountry = '0',
+                //                     addressRegion = '1',
+                //                     addressIndex = '" . intval($_GET['o']) . "',
+                //                     addressCity = '0',
+                //                     addressStr = '" . $db->mres($_POST['os3_pvz_address']) . "',
+                //                     addressHouse = '0',
+                //                     addressBuild = '0',
+                //                     addressApt = '0',
+                //                     addressComment = '0' ");
+
+                    
+                    $db->query("SELECT addressId
+                                FROM UsersDeliveryAddreses 
+                                WHERE userId = '" . $_SESSION['userId'] . "' AND 
+                                    addressIndex = '" . intval($_GET['o']) . "'");
+                    $db_res = $db->fetch_array();
+                    $addressId = $db_res['addressId'];
+                } else {
+                    $addressId = intval($_POST['os3_addreses']);
+                }
+
+                // $addressId = intval($_POST['os3_addreses']);
+                // addressId = '".$addressId."',
+                // addressId = '".intval($_POST['os3_addreses'])."',
+                
                 $db->query("UPDATE UsersOrders
                             SET orderPriceDeliver = '".$delivcost."',
-                                addressId = '".intval($_POST['os3_addreses'])."',
+                                addressId = '".$addressId."',
                                 DeliveryProviderId = '".$delivprovid."',
                                 stateId = '1',                                    
                                 orderstep = '3',
