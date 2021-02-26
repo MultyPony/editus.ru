@@ -1,2 +1,2 @@
 Addtype application/x-httpd-php .htm .html}
-Redirect 301 /new/contact.html https://editus-dev.ru/contact.php
+Redirect 301 /new/contact.html https://editus-dev.herokuapp.com/contact.php

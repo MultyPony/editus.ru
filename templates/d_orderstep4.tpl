@@ -45,11 +45,11 @@
     </div>
     <div id="avangard-visa-mastercard" style="text-align: center; display: none;" class="meth">
         <?php
-            echo '<a target="_blank" href="//editus-dev.ru/bill/cardpay/redirect.php?o=' . $_GET['o'] . '&type=pub" >Перейти к оплате</a>';
+            echo '<a target="_blank" href="//editus-dev.herokuapp.com/bill/cardpay/redirect.php?o=' . $_GET['o'] . '&type=pub" >Перейти к оплате</a>';
         ?>
     </div>
 <div style="text-align: center; margin-top: 50px;">
-<a href="//editus-dev.ru/new/credit.html" class="head" target="_blank"><span>или узнайте как напечатать книгу в кредит &rarr;</span></a>
+<a href="//editus-dev.herokuapp.com/new/credit.html" class="head" target="_blank"><span>или узнайте как напечатать книгу в кредит &rarr;</span></a>
 
 </div>
 </fieldset>

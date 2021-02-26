@@ -4464,9 +4464,9 @@
       <!-- #main --> 
 <?php include 'footer.php';?>
 <?php include 'scripts_read.php';?>
-<script src="//editus-dev.ru/new/js/jquery.isotope.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/jquery.fancybox-1.3.4.css">
-    <script src="//editus-dev.ru/new/js/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="//editus-dev.herokuapp.com/new/js/jquery.isotope.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//editus-dev.herokuapp.com/new/css/jquery.fancybox-1.3.4.css">
+    <script src="//editus-dev.herokuapp.com/new/js/jquery.fancybox-1.3.4.pack.js"></script>
 
 </body>
 </html>
