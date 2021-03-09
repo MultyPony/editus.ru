@@ -44,7 +44,7 @@
     </div>
     <div id="avangard-visa-mastercard" style="text-align: center; display: none;" class="meth">
         <?php
-            echo '<a target="_blank" href="//editus-dev.herokuapp.com/bill/cardpay/redirect.php?o=' . $_GET['o'] . '&type=sho" >Перейти к оплате</a>';
+            echo '<a target="_blank" href="//editus-dev.ru/bill/cardpay/redirect.php?o=' . $_GET['o'] . '&type=sho" >Перейти к оплате</a>';
         ?>
     </div>
 </fieldset>

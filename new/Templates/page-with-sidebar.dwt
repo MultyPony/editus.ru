@@ -64,7 +64,7 @@
           
           <!-- .site-title -->
           <hgroup>
-            <h1 class="site-title"> <a href="//editus-dev.herokuapp.com" title="Издательство Эдитус" rel="home"><img src="images/logo.png" alt="Издательство Эдитус"></a> </h1>
+            <h1 class="site-title"> <a href="//editus-dev.ru" title="Издательство Эдитус" rel="home"><img src="images/logo.png" alt="Издательство Эдитус"></a> </h1>
           <h2 class="site-description">Издательство <font style="font-family: Gotham, Helvetica Neue, Helvetica, Arial,' sans-serif';">Э&#x0301;</font>дитус<sup>&reg;</sup></h2>
           </hgroup>
           <!-- .site-title --> 
@@ -72,23 +72,23 @@
               <!-- #site-navigation -->
           <nav class="main-navigation" role="navigation">
             <ul class="dropdown">
-              <li class="dropdown-top"><a href="//editus-dev.herokuapp.com/about.php">Издательство</a>
+              <li class="dropdown-top"><a href="//editus-dev.ru/about.php">Издательство</a>
               	<ul class="dropdown-inside">
-              		<li class="dropdown-inside"><a href="//editus-dev.herokuapp.com/services.php">Услуги</a>
+              		<li class="dropdown-inside"><a href="//editus-dev.ru/services.php">Услуги</a>
                     <ul class="dropdown-inside2">
-                        	<li><a href="//editus-dev.herokuapp.com/services-text.php">Работа с текстом</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/services-verstka.php">Дизайн книги</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/services-print.php">Печать книг</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/services-public.php">Публикация книг</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/services-certificate.php">Подарочный сертификат</a></li>
+                        	<li><a href="//editus-dev.ru/services-text.php">Работа с текстом</a></li>
+                            <li><a href="//editus-dev.ru/services-verstka.php">Дизайн книги</a></li>
+                            <li><a href="//editus-dev.ru/services-print.php">Печать книг</a></li>
+                            <li><a href="//editus-dev.ru/services-public.php">Публикация книг</a></li>
+                            <li><a href="//editus-dev.ru/services-certificate.php">Подарочный сертификат</a></li>
                         </ul>
                     </li>
-                    <!--<li><a href="//editus-dev.herokuapp.com/price.php">Стоимость</a></li>-->
-                    <li><a href="//editus-dev.herokuapp.com/portfolio.php">Портфолио</a></li>
-                	<li><a href="//editus-dev.herokuapp.com/review.php">Отзывы</a></li>
-               		<li><a href="//editus-dev.herokuapp.com/offer.php">Скидки</a></li>
-                   	<li><a href="//editus-dev.herokuapp.com/partner.php">Партнерство</a></li>
-                    <li class="dropdown-inside"><a href="//editus-dev.herokuapp.com/contact.php">Контакты</a>
+                    <!--<li><a href="//editus-dev.ru/price.php">Стоимость</a></li>-->
+                    <li><a href="//editus-dev.ru/portfolio.php">Портфолио</a></li>
+                	<li><a href="//editus-dev.ru/review.php">Отзывы</a></li>
+               		<li><a href="//editus-dev.ru/offer.php">Скидки</a></li>
+                   	<li><a href="//editus-dev.ru/partner.php">Партнерство</a></li>
+                    <li class="dropdown-inside"><a href="//editus-dev.ru/contact.php">Контакты</a>
                     <!--	<ul class="dropdown-inside2">
                         	<li><a href="contact.php#office">Офис</a></li>
                             <li><a href="contact.php#sklad">Склад</a></li>
@@ -96,13 +96,13 @@
                     </li>
                 </ul>
               </li>
-              		<li class="dropdown-top"><a href="//editus-dev.herokuapp.com/new/print.html">Печать</a>
+              		<li class="dropdown-top"><a href="//editus-dev.ru/new/print.html">Печать</a>
               			<ul class="dropdown-inside">
-                        	<li><a href="//editus-dev.herokuapp.com/project.php">Оформить заказ</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/new/online.html">Инструкция</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/new/equip.html">Оборудование</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/new/oplata-i-dostavka.html">Оплата и доставка</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/new/help.html">Помощь</a></li>
+                        	<li><a href="//editus-dev.ru/project.php">Оформить заказ</a></li>
+                            <li><a href="//editus-dev.ru/new/online.html">Инструкция</a></li>
+                            <li><a href="//editus-dev.ru/new/equip.html">Оборудование</a></li>
+                            <li><a href="//editus-dev.ru/new/oplata-i-dostavka.html">Оплата и доставка</a></li>
+                            <li><a href="//editus-dev.ru/new/help.html">Помощь</a></li>
                         </ul>
                 	</li>
               		<li class="dropdown-top"><a href="//maket.editus.ru">Дизайн</a>
@@ -113,16 +113,16 @@
                         </ul>
                     </li>
               
-              <li class="dropdown-top"><a href="//editus-dev.herokuapp.com/new/advices.html">Советы</a></li>
+              <li class="dropdown-top"><a href="//editus-dev.ru/new/advices.html">Советы</a></li>
               <li class="dropdown-top"><a href="//books.editus.ru">Книги</a>
               			<ul class="dropdown-inside">
                         	<li><a href="//books.editus.ru">Электронные издания</a></li>
-                            <li><a href="//editus-dev.herokuapp.com/bookstore.php">Бумажные издания</a></li>
+                            <li><a href="//editus-dev.ru/bookstore.php">Бумажные издания</a></li>
                         </ul>
 				</li>
-              <li class="dropdown-top"><a href="//editus-dev.herokuapp.com/editus.php?do=listprojects">Аккаунт <span class="meta-nav">→</span></a>
+              <li class="dropdown-top"><a href="//editus-dev.ru/editus.php?do=listprojects">Аккаунт <span class="meta-nav">→</span></a>
               			<ul class="dropdown-inside">
-                        	<li><a href="//editus-dev.herokuapp.com/editus.php?do=listprojects">Печать</a></li>
+                        	<li><a href="//editus-dev.ru/editus.php?do=listprojects">Печать</a></li>
                             <li><a href="https://maket.editus.ru/my-account/">Дизайн</a></li>
                         </ul>
                   </li>
@@ -480,11 +480,11 @@
               <aside class="widget widget_categories">
                   <h3 class="widget-title">Мой Эдитус</h3>
                   <ul>
-                    <li><a href="//editus-dev.herokuapp.com/editus.php?do=editclientdata" title="Личный кабинет">Личный кабинет</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/editus.php?do=listorders" title="Мои заказы">Заказы на печать</a></li>
+                    <li><a href="//editus-dev.ru/editus.php?do=editclientdata" title="Личный кабинет">Личный кабинет</a></li>
+                    <li><a href="//editus-dev.ru/editus.php?do=listorders" title="Мои заказы">Заказы на печать</a></li>
                     <li><a href="//maket.editus.ru/my-account/" title="Мои заказы">Заказы на дизайн</a></li>
                     <li><a href="//maket.editus.ru/vendor_dashboard/" title="История заказов">Область дизайнера</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/partner.php" title="Партнерство">Партнерство</a></li>
+                    <li><a href="//editus-dev.ru/partner.php" title="Партнерство">Партнерство</a></li>
                   </ul>
                 </aside>
               
@@ -498,11 +498,11 @@
               <aside class="widget widget_recent_entries">
                   <h3 class="widget-title">Информация</h3>
                   <ul>
-                    <li><a href="//editus-dev.herokuapp.com/price.php" title="Стоимость услуг">Стоимость издания</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/new/oplata-i-dostavka.html" title="Оплата и доставка">Оплата и доставка</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/offer.php" title="Акции и специальные предложения">Спецпредложения</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/new/terms.html" title="Пользовательское соглашение">Правила и условия</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/new/help.html" title="Часто задаваемые вопросы">Помощь</a></li>
+                    <li><a href="//editus-dev.ru/price.php" title="Стоимость услуг">Стоимость издания</a></li>
+                    <li><a href="//editus-dev.ru/new/oplata-i-dostavka.html" title="Оплата и доставка">Оплата и доставка</a></li>
+                    <li><a href="//editus-dev.ru/offer.php" title="Акции и специальные предложения">Спецпредложения</a></li>
+                    <li><a href="//editus-dev.ru/new/terms.html" title="Пользовательское соглашение">Правила и условия</a></li>
+                    <li><a href="//editus-dev.ru/new/help.html" title="Часто задаваемые вопросы">Помощь</a></li>
                   </ul>
                 </aside>
               
@@ -515,11 +515,11 @@
               <aside class="widget widget_categories">
                   <h3 class="widget-title">Услуги</h3>
                   <ul>
-                    <li><a href="//editus-dev.herokuapp.com/services-text.php" title="Корректура и редактура">Работа с текстом</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/services-verstka.php" title="Дизайн книги">Дизайн книги</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/services-print.php" title="Печать тиража книги">Печать книг</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/services-public.php" title="Публикация издания">Публикация издания</a></li>
-                    <li><a href="//editus-dev.herokuapp.com/services-certificate.php" title="Подарочный сертификат">Подарочный сертификат</a></li>
+                    <li><a href="//editus-dev.ru/services-text.php" title="Корректура и редактура">Работа с текстом</a></li>
+                    <li><a href="//editus-dev.ru/services-verstka.php" title="Дизайн книги">Дизайн книги</a></li>
+                    <li><a href="//editus-dev.ru/services-print.php" title="Печать тиража книги">Печать книг</a></li>
+                    <li><a href="//editus-dev.ru/services-public.php" title="Публикация издания">Публикация издания</a></li>
+                    <li><a href="//editus-dev.ru/services-certificate.php" title="Подарочный сертификат">Подарочный сертификат</a></li>
                   </ul>
                 </aside>
               
@@ -531,7 +531,7 @@
             
               <aside class="widget widget_text">
                 <h3 class="widget-title">Издательство Эдитус</h3>
-                <div class="textwidget"><a href="//editus-dev.herokuapp.com/contact.php">Москва, Ленинградский пр., 80</a></div>
+                <div class="textwidget"><a href="//editus-dev.ru/contact.php">Москва, Ленинградский пр., 80</a></div>
                 <h3 class="widget-title" style="margin-top:10px; padding-top:0;">8 (800) 775-30-87</h3>
                 <a href="mailto:zakaz@editus.ru" onclick="yaCounter1838947.reachGoal('mail'); return true;">zakaz@editus.ru</a>
                 <!-- social icons -->
@@ -555,7 +555,7 @@
           <div class="site-info">&copy; 2010 - <script language="javascript" type="text/javascript"> 
 var d = new Date( );
 document.write(d.getFullYear( ));
-</script>, <a href="//editus-dev.herokuapp.com">ООО "Эдитус"</a>. Зарегистрированный товарный знак. Все права защищены.</div>
+</script>, <a href="//editus-dev.ru">ООО "Эдитус"</a>. Зарегистрированный товарный знак. Все права защищены.</div>
           <!-- .site-info --> 
           
         </div>

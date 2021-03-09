@@ -1,4 +1,4 @@
 <?php
-  header('Location: https://editus-dev.herokuapp.com/price.php#maket');
+  header('Location: https://editus-dev.ru/price.php#maket');
   exit;
 ?>

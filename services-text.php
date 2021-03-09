@@ -324,7 +324,7 @@
                                         
                                         <cite>Нет, для поэзии мы делаем только корректуру, полностью сохраняя авторский стиль.</cite>
                                     </blockquote>
-                                    <a href="//editus-dev.herokuapp.com/new/help.html" class="more-link">Посмотреть другие вопросы <span class="meta-nav">→</span></a>
+                                    <a href="//editus-dev.ru/new/help.html" class="more-link">Посмотреть другие вопросы <span class="meta-nav">→</span></a>
                                     <a href="#" onclick="jivo_api.open(); yaCounter1838947.reachGoal('jivosite'); return true;" class="redbutton">Задать вопрос</a>
 </section>
                                         
