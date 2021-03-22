@@ -287,9 +287,6 @@ require_once './config.inc.php';
 	</section>
 	<?php include 'footer.php'; ?>
 
-	</div>
-	</div>
-
 </body>
 
 </html>

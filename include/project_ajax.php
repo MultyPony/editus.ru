@@ -1,42 +1,42 @@
 <?php
-require_once './../config.inc.php';
-require_once 'db_class.php';
-try {
+  require_once './../config.inc.php';
+  require_once 'db_class.php';
+  try {
     if (isset($_POST['do'])){
-        if ($_POST['do'] == 'getPaperTypeCover'){
-            $db = new Db();
-            if ($_POST['cover'] == 'soft'){
-                $sql= "CoverType <> 'hard'";
-            }else{
-                $sql= "CoverType <> 'soft'";
+      if ($_POST['do'] == 'getPaperTypeCover'){
+        $db = new Db();
+        if ($_POST['cover'] == 'soft'){
+            $sql= "CoverType <> 'hard'";
+        }else{
+            $sql= "CoverType <> 'soft'";
+        }
+        if (($_POST['color'] == 'black') || ($_POST['color']== 'blackds')){
+            $sql.= " AND Color <> '4'";
+        }else{
+            $sql.= " AND Color <> '1'";
+        }
+        $db->query("SELECT PaperTypeId, PaperTypeName, PaperTypeWeight, isDefault FROM PaperTypeCostsCover WHERE ".$sql);
+        while ($row = $db->fetch_array()) {
+            $ch ='';
+            if ($row['isDefault']==1){
+                $ch = 'checked="checked"';
             }
-            if (($_POST['color'] == 'black') || ($_POST['color']== 'blackds')){
-                $sql.= " AND Color <> '4'";
-            }else{
-                $sql.= " AND Color <> '1'";
-            }
-            $db->query("SELECT PaperTypeId, PaperTypeName, PaperTypeWeight, isDefault FROM PaperTypeCostsCover WHERE ".$sql);
-            while ($row = $db->fetch_array()) {
-                $ch ='';
-                if ($row['isDefault']==1){
-                    $ch = 'checked="checked"';
-                }
-                $res .= '<td><label for="pc_'.$row['PaperTypeId'].'"><img src="img/paper.png" border="0"  /><br />'.$row['PaperTypeName'].'<br />'.$row['PaperTypeWeight'].' гр/м<sup>2</sup></label></td>';
-                $res2 .= '<td style="width: 100px;"><input id="pc_'.$row['PaperTypeId'].'" type="radio" name="papercover" value="'.$row['PaperTypeId'].'" '.$ch.' /></td>';
-            }?>
+            $res .= '<td><label for="pc_'.$row['PaperTypeId'].'"><img src="img/paper.png" border="0"  /><br />'.$row['PaperTypeName'].'<br />'.$row['PaperTypeWeight'].' гр/м<sup>2</sup></label></td>';
+            $res2 .= '<td style="width: 100px;"><input id="pc_'.$row['PaperTypeId'].'" type="radio" name="papercover" value="'.$row['PaperTypeId'].'" '.$ch.' /></td>';
+        }
+?>
             
-            <h3>Бумага</h3>
+  <h3>Бумага</h3>
+  <table width="100%">
+      <tr align="center">
+          <?php echo $res; ?>
+      </tr>
+  </table> 
+  <p><a class="more-link" href="//editus-dev.ru/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
+  <h3>Дополнительно</h3>
+  <table id="additionalcover">
 
-            <table width="100%">
-                <tr align="center">
-                    <?php echo $res; ?>
-                    
-                </tr>
-               
-            </table> 
-<p><a class="more-link" href="//editus-dev.ru/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
-            <h3>Дополнительно</h3>
-            <table id="additionalcover"><?php   
+<?php   
             $db->query("SELECT AdditionalCoverId, AdditionalCoverName, helphref, isDefault FROM AdditionalCoverCosts");
             while ($row2 = $db->fetch_array()) {
                 $ch ='';

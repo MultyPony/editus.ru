@@ -160,6 +160,7 @@ $(function(){
             $('#os3_pvz_address').val(`${window.pvz.cityName}, ${window.pvz.PVZ.Address}`);
             $('#os3_delivery_price').val(window.pvz.price + ' руб.');
             $('#hidden_del_price').val(window.pvz.price);
+            $('#hidden_del_citytoid').val(window.pvz.city);
             $('#pvz_cdek').fadeIn();
             // Показать итог стоимость и кнопку оплатить
             // $('#os3_providers_sel option:selected').val(2)

@@ -34,7 +34,7 @@ try {
                     FROM PartnersData
                     WHERE userId = '".$_SESSION['userId']."'");
         $href = $db->fetch_array();
-        $href = '//'.$href[0];
+        $href = '//'.$href[0]; // В бд пусто, можно оставить нотис
         $logopath = '';
         if (isset($_SESSION['myPartnerId'])){
             $logopath = './partner_logo/logo_'.$_SESSION['userId'].'.jpg';

@@ -25,7 +25,8 @@ $gdata = unserialize($row['projectData']);
 $gdata['projectCount']=$row['projectCount'];
 $gdata['uplFormat']=$row['uplFormat'];
 
-$curformat = end(explode(".", $_FILES['myfile']['name']));
+$tmp = explode(".", $_FILES['myfile']['name']);
+$curformat = end($tmp);
 
 //$flagedit = false;
 if ($gdata['additionalservice']!= NULL){

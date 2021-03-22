@@ -5,8 +5,12 @@
  * Time: 23:08
  */
 
-include_once "../../config.inc.php";
-include_once "../../include/db_class.php";
+// include_once "/../../config.inc.php";
+// include_once '../../config.inc.php';
+include_once dirname(__FILE__) . "/../../config.inc.php";
+// include_once "/config.inc.php";
+// include_once "../../include/db_class.php";
+include_once dirname(__FILE__) . "/../../include/db_class.php";
 
 class CardPayAvangard {
 

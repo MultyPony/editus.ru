@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/../cdek/scripts/service.php';
+
 function listprojects(&$e, &$t, &$u) {
     if (!isset($_GET['a'])) {
         if ($u->is_user()) {
@@ -1328,6 +1330,23 @@ function orderstep4(&$e, &$t, &$u) {
                 if ($_POST['typedeliv']=='pickup-point') {
                     $delivprovid = 18;
                     $delivcost = intval($_POST['os3_delivery_price']);
+
+                    // $data = array();
+                    // $data['shipment'] = array(
+                    //     'cityToId' => intval($_POST['os3_delivery_citytoid']),
+                    //     'cityFromId' => '44',
+                    //     'type' => 'pickup',
+                    //     'goods' => array(
+                    //         array('weight' => $massa,
+                    //         'length' => 25,
+                    //         'width'  => 17,
+                    //         'height' => 7
+                    //         )
+                    //     ),
+                    // );
+
+                    // $res = ISDEKservice::calc($data, false);
+                    // $delivcost = $res['result']['price'];
 
                     $db->query("INSERT INTO UsersDeliveryAddreses 
                                 SET userId = '" . $_SESSION['userId'] . "',

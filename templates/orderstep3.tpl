@@ -76,6 +76,7 @@
                                 <td style="text-align: left; vertical-align: middle;">
                                     <input id="os3_delivery_price" type="text" readonly>
                                     <input id="hidden_del_price" type="hidden" value="0" name="os3_delivery_price"/>
+                                    <input id="hidden_del_citytoid" type="hidden" value="0" name="os3_delivery_citytoid"/>
                                 </td>
                             </tr>
                         </tbody>

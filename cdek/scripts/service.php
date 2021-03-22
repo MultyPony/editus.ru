@@ -44,7 +44,7 @@ class ISDEKservice
 		self::printAnswer();
 	}
 
-	public static function calc($data)
+	public static function calc($data, $print = true)
 	{
 		if (!$data['shipment']['tarifList']) {
 			$data['shipment']['tariffList'] = self::$tarifPriority[$data['shipment']['type']];
@@ -74,8 +74,13 @@ class ISDEKservice
 		} else {
 			self::toAnswer(array('error' => 'City to not found'));
 		}
-
-		self::printAnswer();
+		if (!$print) {
+			return $answer;
+			// return json_encode($answer);
+		}
+		else {
+			self::printAnswer();
+		}
 	}
 
 	public static function getCity($data)
@@ -515,14 +520,14 @@ class ISDEKservice
 		}
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $where);
+		curl_setopt($ch, CURLOPT_URL, $where); //Устанавливает параметр для указанного сеанса cURL.
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		if ($data) {
 			curl_setopt($ch, CURLOPT_POST, TRUE);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 			curl_setopt($ch, CURLOPT_REFERER, 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']);
 		}
-		$result = curl_exec($ch);
+		$result = curl_exec($ch); //Выполняет запрос cURL
 		$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		return array(

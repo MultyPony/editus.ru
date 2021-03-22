@@ -23,6 +23,7 @@ class Main_config {
     static $main_file_name = 'editus.php';
     static $debug = 0;
     // static $debugmail = 'debug-editus@banuchka.ru';
+    static $debugmail = 'meshcheryakovvrn@gmail.com';
     static $serviceoff = 0;
 }
 ?>
