@@ -16,7 +16,7 @@ function listprojects(&$e, &$t, &$u) {
                                 curState = 'new',
                                 userId = '" . $_SESSION['userId'] . "' ");
                 $actionloc = '?do=orderstep1&o='.intval($_GET['pj']);
-                $e->mail(Main_config::$debugmail, 'Editus', 'Добавлен проект id проекта -  '.$row[0]."\n ( id - ".$_SESSION['userId'].' '.$_SERVER['HTTP_USER_AGENT'].')');
+                $e->mail(Main_config::$debugmail, 'Editus', 'Добавлен проект id проекта -  '. $row[0]."\n ( id - ".$_SESSION['userId'].' '.$_SERVER['HTTP_USER_AGENT'].')');
                 header("Location: //" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . $actionloc);
                 exit;
             } else if ($_GET['pj'] == 'n') {

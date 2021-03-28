@@ -7,21 +7,26 @@ class Engine {
     private $path_to_classes = 'include/';
     private $path_to_module = 'include/';
 //    var $user='';
-    var $tpl='';
+    var $tpl='';        // var == public property
     var $settings = '';
     var $do='';
    
+    // Назначить путь к корню
     function set_path_to_root($path) {
         $this->path_to_root = $path;
     }
 
+    // Назначить путь к модулю
     function set_path_to_module($path) {
         $this->path_to_module = $path;
     }
 
+    // Назначить путь к языковому модулю
     function set_path_to_lang($path) {
         $this->path_to_lang = $path;
     }
+
+    // Включить файл config.inc.php
     function load_main_settings() {
         if (file_exists($this->path_to_root . 'config.inc.php')) {
             include_once $this->path_to_root . 'config.inc.php';
@@ -30,6 +35,7 @@ class Engine {
         }
     }
 
+    // Включить файл errors_lang.php
     function load_lang_error() {
         if (file_exists($this->path_to_root . $this->path_to_lang . 'errors_lang.php')) {
             include_once $this->path_to_root . $this->path_to_lang . 'errors_lang.php';
@@ -38,6 +44,7 @@ class Engine {
         }
     }
 
+    // Включить файл класса
     function load_class($name) {
         if (file_exists($this->path_to_root . $this->path_to_classes . $name . '_class.php')) {
             include_once $this->path_to_root . $this->path_to_classes . $name . '_class.php';
@@ -45,6 +52,8 @@ class Engine {
             throw new Exception(_NOTEXISTFILECLASS . ' ' . $name . '_class.php', 6);
         }
     }
+
+    // Включить файл ext класса
     function load_ext_class($name) {
         if (file_exists($this->path_to_root . $this->path_to_classes .'ext_libs/'. $name . '.php')) {
             include_once $this->path_to_root . $this->path_to_classes .'ext_libs/'. $name . '.php';
@@ -53,6 +62,7 @@ class Engine {
         }
     }
 
+    // Включить файл языкового модуля
     function load_lang($name,$s=0) {
         if (file_exists($this->path_to_root . $this->path_to_lang . $name . '_lang.php')) {
             include_once $this->path_to_root . $this->path_to_lang . $name . '_lang.php';
@@ -61,6 +71,7 @@ class Engine {
         }
     }
 
+    // Включить файл модуля
     function load_module($name) {
         if (file_exists($this->path_to_root . $this->path_to_module . $name . '_module.php')) {
             include_once $this->path_to_root . $this->path_to_module . $name . '_module.php';
@@ -68,6 +79,8 @@ class Engine {
             throw new Exception(_NOTEXISTFILEMODULE . ' ' . $name . '_module.php', 8);
         }
     }
+
+    // 
     function call_function(&$tpl, &$usr, $g=0) {
         $funcname = $this->do;
         if ($funcname != 'editsettings' && $funcname != 'logout' && $funcname != 'login' && $funcname != 'register_partner' && $funcname != 'register' && $funcname != 'recover_password' && $funcname != 'activate') {
@@ -91,12 +104,13 @@ class Engine {
             } else {
                 throw new Exception(_NOTFINDFUNCTION . ' ' . $funcname, 9);
             }
-        }elseif ($funcname == 'editsettings'){
+        } elseif ($funcname == 'editsettings'){
             if ((in_array(-1,$usr->access()))){
                 $tpl->set_vars(array('content'=>Settings::editsettings()));
             }
         }
     }
+
     function showadminmenu(&$u){
         $db = new Db();
         $db->query("SELECT MenuAdmin.menuName, Functions.functionName, MenuAdmin.href, 

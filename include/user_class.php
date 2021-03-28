@@ -366,7 +366,8 @@ class User {
         $tpl->fetch('login.tpl');
         return $tpl->get_tpl();
     }
-        function adminlogin() {
+    
+    function adminlogin() {
         if (isset($_POST['userEmail'])) {
             $userEmail = trim($_POST['userEmail']);
             $userPassword = sha1(($_POST['userPassword']));
@@ -391,6 +392,7 @@ class User {
             }
         }
     }
+
     function logout(){
         if ($this->is_user()){
             unset ($_SESSION['userEmail']);

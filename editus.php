@@ -10,7 +10,7 @@ try {
     if (!empty(Main_config::$sessiondir)){
         session_save_path(Main_config::$sessiondir);
     }
-    session_set_cookie_params(10800);
+    session_set_cookie_params(10800); // время жизни сессионной куки 3 часа ???
     session_start();
     $engine->load_class('tpl');
     $tpl = new Template();

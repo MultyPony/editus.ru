@@ -1,4 +1,5 @@
 ﻿<?php
+	// require_once(__DIR__ . '/include/lang/funcOrderClient_lang.php');
 // $s = file_get_contents('//ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . 'editus.ru');
 
 //ПОТОМ РАСКОМЕНТ
@@ -68,12 +69,42 @@ require_once './config.inc.php';
 	<script>
 		window.jQuery || document.write('<script src="//editus-dev.ru/new/js/jquery-1.8.3.min.js"><\/script>')
 	</script>
-	<script type="text/javascript" src="js/project.js"></script>
+	<!-- <script type="text/javascript" src="js/project.js"></script> --> <!-- Скрипт для выбора типа страниц и тд -->
+	<script type="text/javascript" src="js/__project.js"></script> <!-- Мой Скрипт -->
 	<script>
 		$(function() {
 			$('#site-navigation > ul > li').removeClass('current-menu-item').eq(1).addClass('current-menu-item')
 		});
 	</script>
+	<style>
+		.input-wrap {
+			display: flex; 
+			flex-direction: column
+		}
+		.error-empty {
+			display: none;
+			font-size: 14px;
+			color: red;
+		}
+		#pdf-info {
+			margin: 25px 0;
+		}
+
+		#load-error {
+			margin: 0;
+			margin-left: 1em;
+			color: red;
+		}
+
+		.flex {
+			display: flex;
+			align-items: center;
+		}
+
+		.black {
+			background-color: #333;
+		}
+	</style>
 </head>
 
 <body>
@@ -81,212 +112,93 @@ require_once './config.inc.php';
 	<div id="page" class="hfeed site">
 
 		<?php include 'top.php'; ?>
+		
 		<!-- #main -->
 		<section id="main" class="middle wrapper">
 			<div class="row row-fluid">
-				<!-- #primary -->
-				<div id="primary" class="site-content">
-					<!-- #content -->
-					<div id="content" role="main">
-						<!-- .row -->
-						<div class="row-fluid readable-content page">
-							<!-- .hentry -->
-							<article class="post hentry">
+				<div id="content" role="main">
+					<header class="entry-header">
+						<h1 class="entry-title">Загрузка блока</h1>
+					</header>
+					<?php include 'topmenu.php'; ?>
+					<div class="blog-single readable-content">
+						<fieldset id="os1">
+							<legend class="orderstepname"><h2>Оформление заказа:
+								<span id="nameandauthorleg">название и автор</span>
+								<span id="resblockleg" style="display: none;">загрузка текста</span></h2>
+							</h2>
+							</legend>
+							<form method="post" action="" style="margin: 0;">
+								<div id="authorname">
+									<p class="input-wrap">
+										<label for="os1_name">Название книги:</label>
+										<input id="os1_name" type="text" name="os1_name" placeholder="Война и мир"/>
+										<span class="error-empty error-bookname">Введите название книги</span>
+									</p>
+									<p class="input-wrap">
+										<label for="os1_author">Автор:</label>
+										<input id="os1_author" type="text" name="os1_author" placeholder="Лев Толстой"/>
+										<span class="error-empty error-author">Введите имя автора</span>
+									</p>
+									<div>
+										<input type="button" class="button red" id="toresultblock" value="Далее" />
+									</div>
+								</div>
 
-								<?php
-								if (Main_config::$serviceoff != 1 || isset($_SESSION['admin'])) {
-									if (!isset($_GET['c'])) {
-								?>
-
-										<!-- .entry-header -->
-										<header class="entry-header">
-											<h1 class="entry-title">Печать книги</h1>
-										</header>
-										<!-- .entry-header -->
-										<?php include 'topmenu.php'; ?>
-										<h2>Выберите переплет книги</h2>
-
-										<div class="entry-content">
-											<div class="span7">
-												<table width="100%">
-													<tr align="center">
-														<th colspan="3">Мягкая обложка</th>
-													</tr>
-													<tr align="center">
-														<td>
-															<img src="../img/skley.jpg" title="Клеевое скрепление" alt="Клеевое скрепление"><br>Клеевое
-															скрепление
-														</td>
-														<td>
-															<img src="../img/skrep.jpg" title="Брошюровка скобой" alt="Брошюровка скобой"><br>Брошюровка
-															скобой
-														</td>
-														<td>
-															<img src="../img/pruj.jpg" title="Переплет на пружине" alt="Переплет на пружине"><br>Переплет
-															на пружине
-														</td>
-													</tr>
-													<tr align="center">
-														<td colspan="3" style="border:none;"><br /><a class="button red" href="project.php?c=s">Выбрать
-																мягкую обложку</a></td>
-													</tr>
-												</table>
+								<div id="resultblock" style="display: none;" >
+									<p>
+										Поддерживаемый формат - PDF.<br>
+										Загружая PDF-файл, проверьте настройки: <strong>PDF/X-1a:2001 гарантирует качественную печать и отсутствие ошибок</strong>
+										<a class="head" href="//editus-dev.ru/new/pdf.html" target="_blank">(требования к PDF)</a>. 
+									</p>
+									<!-- .entry-content -->
+									<div class="entry-content">
+										<p>
+										<a href="template.php" class="more-link" target="_blank">Как подготовить макет книги самостоятельно?<span class="meta-nav"> →</span></a>
+										</p>
+									</div>
+									<!-- .entry-content -->
+									<div>
+										<div>
+											<div class="flex">
+												<input type="button" class="button red" id="uploadblock" value="Загрузить блок" />
+												<p id="load-error"></p>
 											</div>
-											<div class="span5">
-												<table width="100%">
-													<tr align="center">
-														<th colspan="2">Твердая обложка</th>
-													</tr>
-													<tr align="center">
-														<td><img src="../img/tverd.jpg" title="Скрепление с шитьем" alt="Скрепление с шитьем"><br>Скрепление с шитьем</td>
-														<td><img src="../img/dust.jpg" title="Скрепление втачку" alt="Скрепление втачку"><br>Скрепление
-															втачку</td>
-													</tr>
-													<tr align="center">
-														<td colspan="2" style="border:none;"><br /><a class="button red" href="project.php?c=h">Выбрать
-																твердую обложку</a></td>
-													</tr>
-												</table>
-											</div>
+											<input type="file" id="uploadblock_file" accept=".pdf" style="display: none;" />
 										</div>
-						</div>
-					<?php } elseif ($_GET['c'] == 's') { ?>
-						<header class="entry-header">
-							<h1 class="entry-title">Печать книги</h1>
-						</header>
+									</div>
+									<span style="display: none; cursor:pointer;" id="uploadblock_after">Загрузить повторно</span>
+									
+									<p id="messerror" style="display: none;"></p>
 
-						<?php include 'topmenu.php'; ?>
-
-						<form name="order" method="post" action="<?php echo Main_config::$main_file_name; ?>?pj=n">
-							<div class="entry-content" id="block">
-								<h2>Выберите параметры книги</h2>
-								<h3>Цветность блока</h3>
-								<table width="100%">
-									<tr align="center">
-										<td>
-											<label for="bblackp">
-												<img src="../img/black.jpg" title="Черно-белая печать" alt="Черно-белая печать"><br>Черно-белая
-												печать
-											</label>
-											<input id="bblackp" type="radio" name="colorblock" value="black" />
-										</td>
-										<td>
-											<label for="bcolorp">
-												<img src="../img/color.jpg" title="Цветная печать" alt="Цветная печать"><br>Цветная печать
-											</label>
-											<input id="bcolorp" type="radio" name="colorblock" value="color" />
-										</td>
-									</tr>
-								</table>
-								<div id="paperTypeBlock" style="display: none;"></div>
-								<div id="paperSizeBlock" style="display: none;"></div>
-								<div id="count" style="display: none;">
-									<h3>Объем</h3>
-									<table width="100%">
+									<table id="pdf-info" style="display: none;">
 										<tr>
-											<td>Количество страниц*:</td>
-											<td>
-												<input id="softpages" type="text" name="volume" size="6" maxlength="6" value="64" />
-												<input type="hidden" id="addpages" name="addvolume" size="6" maxlength="6" value="0" />
-											</td>
+											<td>Размер книги: </td>
+											<td style="padding-left:10px;" id="os1_booksize"></td>
 										</tr>
 										<tr>
-											<td>Тираж*:</td>
-											<td><input id="softcount" type="text" name="count" size="6" maxlength="3" value="1" />
-											</td>
+											<td>Количество страниц: </td>
+											<td style="padding-left:10px;" id="os1_pagenumber"></td>
 										</tr>
 									</table>
+									<!-- <div > -->
+										<a href="/book-parameters.php">
+											<input id="book-parameters-btn" type="button" class="button red" value="Выбрать параметры книги" style="display: none;"/>
+										</a>
+									<!-- </div> -->
 								</div>
-								<div id="binding"></div>
-								<br />
-								<input type="button" id="topapercover" class="button" value="Назад" />
-								<input id="toadd" type="button" class="button red" value="Далее" />
-							</div>
-							<div class="entry-content" id="add" style="display: none;">
-								<div id="total"></div>
-								<input type="hidden" name="cover" value="soft" />
-								<input type="button" id="topaperblock" class="button" value="Пересчитать" />&nbsp;&nbsp;&nbsp;<input type="submit" class="button red" value="Начать печать" />
-							</div>
-						</form>
-
-
-					<?php } elseif ($_GET['c'] == 'h') { ?>
-
-						<header class="entry-header">
-							<h1 class="entry-title">Печать книги</h1>
-						</header>
-						<?php include 'topmenu.php'; ?>
-
-						<form name="order" method="post" action="<?php echo Main_config::$main_file_name; ?>?pj=n">
-							<div class="entry-content" id="block">
-								<h2>Выберите параметры книги</h2>
-								<h3>Цветность блока</h3>
-								<table width="100%">
-									<tr align="center">
-										<td>
-											<label for="bblackp">
-												<img src="../img/black.jpg" title="Черно-белая печать" alt="Черно-белая печать"><br>Черно-белая
-												печать
-											</label>
-											<input id="bblackp" type="radio" name="colorblock" value="black" />
-										</td>
-										<td>
-											<label for="bcolorp">
-												<img src="../img/color.jpg" title="Цветная печать" alt="Цветная печать"><br>Цветная печать
-											</label>
-											<input id="bcolorp" type="radio" name="colorblock" value="color" />
-										</td>
-									</tr>
-								</table>
-
-
-								<div id="paperTypeBlock" style="display: none;">
-								</div>
-								<div id="paperSizeBlock" style="display: none;">
-								</div>
-								<div id="count" style="display: none;">
-
-									<h3>Объем</h3>
-									<table width="100%">
-										<tr>
-											<td>Количество страниц*:</td>
-											<td>
-												<input id="hardpages" type="text" name="volume" size="6" maxlength="6" value="64" />
-												<input type="hidden" id="addpages" name="addvolume" size="6" maxlength="6" value="0" />
-											</td>
-										</tr>
-										<tr>
-											<td>Тираж*:</td>
-											<td><input id="hardcount" type="text" name="count" size="6" maxlength="3" value="1" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div id="binding">
-								</div>
-								<br />
-								<input type="button" id="topapercover" class="button" value="Назад" />
-								<input id="toadd" type="button" class="button red" value="Далее" />
-							</div>
-							<div class="entry-content" id="add" style="display: none;">
-								<div id="total"></div>
-								<input type="hidden" name="cover" value="hard" />
-								<input type="button" id="topaperblock" class="button" value="Пересчитать" />&nbsp;&nbsp;&nbsp;<input type="submit" class="button red" value="Начать печать" />
-
-							</div>
-						</form>
-				<?php }
-								} ?>
-				<div style="margin-top: 20px;"></div>
-
-				</article>
+							</form>
+						</fieldset>
 					</div>
 				</div>
 			</div>
-	</div>
-	</section>
+		</section>
 	<?php include 'footer.php'; ?>
-
+	<?php 
+		$_SESSION['pages'] = 90;
+		$_SESSION['size_paper'] = 3;
+	?>
+	</div>
 </body>
 
 </html>

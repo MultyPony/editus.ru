@@ -1,4 +1,7 @@
 <?php
+
+  session_start();
+
   require_once './../config.inc.php';
   require_once 'db_class.php';
   try {
@@ -115,34 +118,46 @@
         echo (isset($res4) ? $res4 : '');
         ?></tr>
         </table><?php
-    }    
+    }
+     
     if ($_POST['do'] == 'getPaperTypeBind'){
         $db = new Db();
-        $db->query("SELECT BindingType.BindingId, BindingType.BindingName FROM BindingType WHERE BindingType.CoverType = '".$db->mres($_POST['cover'])."' AND BindingType.BindingMin <= '".intval($_POST['pages'])."' AND BindingType.BindingMax >= '".intval($_POST['pages'])."' ");
+        // $db->query("SELECT BindingType.BindingId, BindingType.BindingName 
+        //             FROM BindingType WHERE BindingType.CoverType = '".$db->mres($_POST['cover'])."' 
+        //                                  AND BindingType.BindingMin <= '".intval($_POST['pages'])."' 
+        //                                  AND BindingType.BindingMax >= '".intval($_POST['pages'])."' "
+        // );
+
+        $db->query("SELECT BindingType.BindingId, BindingType.BindingName, CoverType
+                    FROM BindingType WHERE BindingType.BindingMin <= '".intval($_SESSION['pages'])."' 
+                                        AND BindingType.BindingMax >= '".intval($_SESSION['pages'])."' "
+        );
+        
         if ($db->num_rows() >= 1){
             while ($row = $db->fetch_array()) {
                 if (!isset($res)){
-                    $res = '';
+                    $res = array();
                 }
-                $res .='<td><label for="bt_'.$row['BindingId'].'"><img src="img/bindtype_'.$row['BindingId'].'.jpg" border="0" /></label><label for="bt_'.$row['BindingId'].'" >'.$row['BindingName'].'</label><input id="bt_'.$row['BindingId'].'" type="radio" name="binding" value="'.$row['BindingId'].'" /></td>';
- 
-            }?> 
-
-            <h3>Крепление</h3>
-            <table width="100%">
-                <tr align="center">
-                    <?php echo $res; ?>
-                </tr>
-               
-            </table>
-            <p><a class="more-link" href="//editus-dev.ru/new/pereplet.html" target="_blank">Какой переплет выбрать?</a></p><?php
-        }else{
+                $res[] = array(
+                    'bindingId' => $row['BindingId'],
+                    'bindingName' => htmlspecialchars($row['BindingName']),
+                    'coverType' => htmlspecialchars($row['CoverType']),
+                ); 
+            }
+        
+            echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            // echo json_encode(array('soft' => htmlspecialchars($res)));
+            
+            ?> 
+        <?php
+        } else {
             ?>
             
             <h3>Крепление</h3>
             <p>К сожалению, креплений для данного количества страниц нет</p><?php
         }
-    }   
+    }
+
     if ($_POST['do'] == 'AdditionalService'){
         $db = new Db();
         $db->query("SELECT * FROM AdditionalServiceCosts WHERE AdditionalServiceEnable = '1' ");
@@ -183,21 +198,21 @@
                   <script type="text/javascript">$("input[type=submit]").hide();</script>';
             return;
         }
-        if (intval($_POST['size_paper'])==0){
-            echo '<p class="tabletitle"><font color="#FF0000"><b>Выберите размер бумаги</b></font></p>
-                  <script type="text/javascript">$("input[type=submit]").hide();</script>';
-            return;
-        }
+        // if (intval($_POST['size_paper'])==0){
+        //     echo '<p class="tabletitle"><font color="#FF0000"><b>Выберите размер бумаги</b></font></p>
+        //           <script type="text/javascript">$("input[type=submit]").hide();</script>';
+        //     return;
+        // }
         if (intval($_POST['papertype_block'])==0){
             echo '<p class="tabletitle"><font color="#FF0000"><b>Выберите бумагу</b></font></p>
                   <script type="text/javascript">$("input[type=submit]").hide();</script>';
             return;
         }
-        if (intval($_POST['pages'])==0){
-            echo '<p class="tabletitle"><font color="#FF0000"><b>Укажите количество страниц</b></font></p>
-                  <script type="text/javascript">$("input[type=submit]").hide();</script>';
-            return;
-        }
+        // if (intval($_POST['pages'])==0){
+        //     echo '<p class="tabletitle"><font color="#FF0000"><b>Укажите количество страниц</b></font></p>
+        //           <script type="text/javascript">$("input[type=submit]").hide();</script>';
+        //     return;
+        // }
         if (intval($_POST['count'])==0){
             echo '<p class="tabletitle"><font color="#FF0000"><b>Укажите тираж</b></font></p>
                   <script type="text/javascript">$("input[type=submit]").hide();</script>';
@@ -210,7 +225,8 @@
         }
 		
         
-        $pages = intval($_POST['pages']);
+        // $pages = intval($_POST['pages']);
+        $pages = intval($_SESSION['pages']);
         $count = intval($_POST['count']);
         
         $db->query("SELECT PrintCost 
@@ -226,9 +242,12 @@
         $row = $db->fetch_array();
         $pr_papertypecover = $row[0];
         
+        // $size_paper = $_POST['size_paper'];
+        $size_paper = $_SESSION['size_paper'];
+
         $db->query("SELECT formatInA3, formatName, formatWidth, formatHeight 
                     FROM PaperFormat 
-                    WHERE formatId = '".intval($_POST['size_paper'])."' ");
+                    WHERE formatId = '".intval($size_paper)."' ");
         $row = $db->fetch_array();
         $pr_pagesona3 = $row[0];
         $pr_pagesona3_name = $row[1];
@@ -274,12 +293,15 @@
 //        $row16 = $db->fetch_array();
 //        $koef16 = $row16[0];
 		
+        // $size_paper = $_POST['size_paper'];
+        $size_paper = $_SESSION['size_paper'];
+
         $db->query("SELECT BindingCosts 
                     FROM BindingTypeCosts 
                     WHERE BindingMin <= '".$pages."' AND 
                           BindingMax >= '".$pages."' AND 
                           BindingId = '".intval($_POST['bind'])."' AND 
-                          formatId = '".intval($_POST['size_paper'])."' ");
+                          formatId = '".intval($size_paper)."' ");
         $row = $db->fetch_array();
         $pr_bind = $row[0];
 
@@ -357,40 +379,73 @@
 		$d = date ( "d.m.Y" , mktime(0, 0, 0, date("m"), date("d")+$srok, date("Y")));
 	
         $fixbind = isset($fixbind) ? $fixbind : "";
-            echo '<table width="100%">
-                    <tr>
-                        <td colspan="2">
-                            <h3>'.$covers[$_POST['papertype_cover']][0].'</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="img/bindtype_'.$_POST['bind'].'.jpg" border="0"></td>
-                        <td>Размер: <b>'.$pr_pagesona3_name.'</b> '.$pr_pagesona3_name_hw.'<br> 
-                            Крепление: '.$pr_bind_name.'<br> 
-                            Обложка цветная с матовой ламинацией<br>
-							Блок: '.$pr_printtypeblock_name.', '.$pr_papertypeblock_name.', '.$pages.' стр.<br>
-                            Тираж: <b>'.$count.' экз. '.$ekz.'</b><br>
-							'.$fixbind.'
-                        </td>
-                    </tr> 
-              </table>     
+//             echo '<table width="100%">
+//                     <tr>
+//                         <td colspan="2">
+//                             <h3>'.$covers[$_POST['papertype_cover']][0].'</h3>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td><img src="img/bindtype_'.$_POST['bind'].'.jpg" border="0"></td>
+//                         <td>Размер: <b>'.$pr_pagesona3_name.'</b> '.$pr_pagesona3_name_hw.'<br> 
+//                             Крепление: '.$pr_bind_name.'<br> 
+//                             Обложка цветная с матовой ламинацией<br>
+// 							Блок: '.$pr_printtypeblock_name.', '.$pr_papertypeblock_name.', '.$pages.' стр.<br>
+//                             Тираж: <b>'.$count.' экз. '.$ekz.'</b><br>
+// 							'.$fixbind.'
+//                         </td>
+//                     </tr> 
+//               </table>     
               
-              <table id="ads"></table>'.$ISBN.'
+//               <table id="ads"></table>'.$ISBN.'
               								
-            <h2>Стоимость печати тиража: <span class="label" id="vpr">'.($total).'</span> руб.</h2>
-Ориентировочная дата готовности: '.$d.'
+//             <h2>Стоимость печати тиража: <span class="label" id="vpr">'.($total).'</span> руб.</h2>
+// Ориентировочная дата готовности: '.$d.'
 
-<br><br>
+// <br><br>
 
 												
 												
-              <div class="alert">
-                                                	<strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//editus-dev.ru/offer.php">Подробнее >></a> 
-                                                </div>
+//               <div class="alert">
+//                                                 	<strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//editus-dev.ru/offer.php">Подробнее >></a> 
+//                                                 </div>
 												
-              <input type="hidden" name="totalor" id="totslpriceor" value="'.($total).'"/>
-              <input type="hidden" name="total" id="totslprice" value="'.($total).'"/> 
-              ';
+//               <input type="hidden" name="totalor" id="totslpriceor" value="'.($total).'"/>
+//               <input type="hidden" name="total" id="totslprice" value="'.($total).'"/> 
+//               ';
+    ?>
+    <table width="100%">
+        <tr>
+            <td colspan="2">
+                <h3><?php echo $covers[$_POST['papertype_cover']][0] ; ?></h3>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="<?php echo "img/bindtype_" . $_POST['bind'] . ".jpg"; ?>" border="0"></td>
+            <td>Размер: <b><?php echo $pr_pagesona3_name; ?></b> <?php echo $pr_pagesona3_name_hw; ?><br> 
+                Крепление: <?php echo $pr_bind_name; ?><br> 
+                Обложка цветная с матовой ламинацией<br>
+                Блок: <?php echo "$pr_printtypeblock_name".', '.$pr_papertypeblock_name.', '.$pages." стр."; ?><br>
+                Тираж: <b><?php echo $count.' экз. '.$ekz; ?></b><br>
+                <?php echo $fixbind ?>
+            </td>
+        </tr> 
+    </table>     
+    
+    <!-- <table id="ads"></table><?php echo $ISBN; ?> -->
+                                
+    <h2>Стоимость печати тиража: <span class="label" id="vpr"><?php echo $total; ?></span> руб.</h2>Ориентировочная дата готовности: <?php echo $d; ?><br><br>
+
+                                    
+                                    
+    <div class="alert">
+        <strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//editus-dev.ru/offer.php">Подробнее >></a> 
+    </div>
+                                    
+    <input type="hidden" name="totalor" id="totslpriceor" value="<?php echo $total; ?>"/>
+    <input type="hidden" name="total" id="totslprice" value="<?php echo $total; ?>"/> 
+              
+              <?php 
 	}
     if ($_POST['do'] == 'getPagesCorrect'){
         $db = new Db();
