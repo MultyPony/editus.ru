@@ -27,7 +27,8 @@
               </li>
               		<li class="dropdown-top"><a href="//editus-dev.ru/new/print.html">Печать</a>
               			<ul class="dropdown-inside">
-                        	<li><a href="//editus-dev.ru/project.php">Оформить заказ</a></li>
+                        	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/project.php">Оформить заказ</a></li>
+                        	<!-- <li><a href="//editus-dev.ru/project.php">Оформить заказ</a></li> -->
                             <li><a href="//editus-dev.ru/new/online.html">Инструкция</a></li>
                             <li><a href="//editus-dev.ru/new/equip.html">Оборудование</a></li>
                             <li><a href="//editus-dev.ru/oplata-i-dostavka.php">Оплата и доставка</a></li>
