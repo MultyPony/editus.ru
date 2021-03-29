@@ -2,7 +2,7 @@
 $ref = $_SERVER['QUERY_STRING']; 
 if ( !empty($ref) ) $ref = '?'.$ref; 
 header('HTTP/1.1 301 Moved Permanently'); 
-header('Location: //editus-dev.ru/new/spravka.html'.$ref); 
+header('Location: //<?php echo $_SERVER['SERVER_NAME'];?>/new/spravka.html'.$ref); 
 exit(); 
 ?>
 <?php session_start(); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="//www.w3.org/1999/xhtml"> <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  <title>Справочник автора - термины и определения по изданию книг</title>
@@ -14,7 +14,7 @@ exit();
 
 <div id="left">
 <div id="relative">
-<a href="//editus-dev.ru"><img src="img/logo.gif" width="250" height="328" alt="Editus" border="0"></a>
+<a href="//<?php echo $_SERVER['SERVER_NAME'];?>"><img src="img/logo.gif" width="250" height="328" alt="Editus" border="0"></a>
 <?php include 'topmenu.php';?>
 </div>
 

@@ -2,7 +2,7 @@
 $ref = $_SERVER['QUERY_STRING']; 
 if ( !empty($ref) ) $ref = '?'.$ref; 
 header('HTTP/1.1 301 Moved Permanently'); 
-header('Location: //editus-dev.ru/services-verstka.php'.$ref); 
+header('Location: //<?php echo $_SERVER['SERVER_NAME'];?>/services-verstka.php'.$ref); 
 exit(); 
 ?>
 <?php session_start(); ?>

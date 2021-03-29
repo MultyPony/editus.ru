@@ -2,7 +2,7 @@
 $ref = $_SERVER['QUERY_STRING']; 
 if ( !empty($ref) ) $ref = '?'.$ref; 
 header('HTTP/1.1 301 Moved Permanently'); 
-header('Location: //editus-dev.ru/new/pdf.html'.$ref); 
+header('Location: //<?php echo $_SERVER['SERVER_NAME'];?>/new/pdf.html'.$ref); 
 exit(); 
 ?>
 <?php session_start(); ?>
@@ -56,7 +56,7 @@ exit();
 
 <div id="left">
 <div id="relative">
-<a href="//editus-dev.ru"><img src="img/logo.gif" width="250" height="328" alt="Editus" border="0"></a>
+<a href="//<?php echo $_SERVER['SERVER_NAME'];?>"><img src="img/logo.gif" width="250" height="328" alt="Editus" border="0"></a>
 <?php include 'topmenu.php';?>
 </div>
 

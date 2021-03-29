@@ -52,13 +52,13 @@
                                       <div class="span4">
                                         <!-- .featured-image --> 
                                 <div class="featured-image">
-									<a href="//editus-dev.ru/new/advices.html"><img src="../img/step-1.png" height="400px" alt="Советы по подготовке макетов книги"></a>
+									<a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/advices.html"><img src="../img/step-1.png" height="400px" alt="Советы по подготовке макетов книги"></a>
                                 </div>
                                 <!-- .featured-image -->
                                         
                                         <h2>Самостоятельно</h2>
 										  <p>Как подготовить макеты книги своими руками: подробные советы, инструкции и видео</p>
-                                   <a href="//editus-dev.ru/new/advices.html" class="redbutton">посмотреть</a>
+                                   <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/advices.html" class="redbutton">посмотреть</a>
                                     </div>  
                                      <div class="span4">
                                         <!-- .featured-image --> 
@@ -75,13 +75,13 @@
                                      <div class="span4">
                                         <!-- .featured-image --> 
                                 <div class="featured-image">
-									<a href="//editus-dev.ru/services.php"><img src="../img/step-3.png" height="400px" alt="Наши услуги"></a>
+									<a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services.php"><img src="../img/step-3.png" height="400px" alt="Наши услуги"></a>
                                 </div>
                                 <!-- .featured-image -->
                                         
                                         <h2>Издательством</h2>
 										 <p>В нашей команде: редакторы, корректоры, переводчики, дизайнеры-верстальщики, художники...</p>
-                                   <a href="//editus-dev.ru/services.php" class="redbutton">наши услуги</a>
+                                   <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services.php" class="redbutton">наши услуги</a>
                                     </div>
                                      
 									</div>	  

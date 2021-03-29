@@ -53,20 +53,20 @@ require_once './config.inc.php';
         <![endif]-->
 
 	<!-- STYLES -->
-	<link rel="stylesheet" type="text/css" media="print" href="//editus-dev.ru/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/style.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/js/google-code-prettify/prettify.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/uniform.default.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/main.css">
-	<link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" media="print" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/style.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/google-code-prettify/prettify.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/uniform.default.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/main.css">
+	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/flexslider.css">
 	<!-- SCRIPTS -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>
-		window.jQuery || document.write('<script src="//editus-dev.ru/new/js/jquery-1.8.3.min.js"><\/script>')
+		window.jQuery || document.write('<script src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/jquery-1.8.3.min.js"><\/script>')
 	</script>
 	<script type="text/javascript" src="js/project.js"></script>
 	<script>

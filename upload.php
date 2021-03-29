@@ -1,6 +1,6 @@
 <?php 
 
-    if (isset($_FILES['file']['name'])) {
+    if (isset($_FILES['file']['tmp_name'])) {
         // echo 'Файл ' . $_FILES['file']['name'] . ' получен';
         // Здесь проверка pdf
         $name = $_FILES['file']['name'];

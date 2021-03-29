@@ -13,12 +13,12 @@
               <aside class="widget widget_categories">
                   <h3 class="widget-title">Мой Эдитус</h3>
                   <ul>
-                    <li><a href="//editus-dev.ru/editus.php?do=editclientdata" title="Личный кабинет">Личный кабинет</a></li>
-                    <li><a href="//editus-dev.ru/editus.php?do=listorders" title="Мои заказы">Заказы на печать</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=editclientdata" title="Личный кабинет">Личный кабинет</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=listorders" title="Мои заказы">Заказы на печать</a></li>
                     <li><a href="//maket.editus.ru/my-account/" title="Мои заказы">Заказы на дизайн</a></li>
                     <li><a href="//maket.editus.ru/vendor_dashboard/" title="История заказов">Область дизайнера</a></li>
-                    <li><a href="//editus-dev.ru/partner.php" title="Партнерство">Партнерство</a></li>
-                    <li><a href="//editus-dev.ru/vacancy.php" title="Партнерство">Вакансии</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/partner.php" title="Партнерство">Партнерство</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/vacancy.php" title="Партнерство">Вакансии</a></li>
                   </ul>
                   
               
@@ -32,11 +32,11 @@
               <aside class="widget widget_recent_entries">
                   <h3 class="widget-title">Информация</h3>
                   <ul>
-                    <li><a href="//editus-dev.ru/price.php" title="Стоимость услуг">Стоимость издания</a></li>
-                    <li><a href="//editus-dev.ru/oplata-i-dostavka.php" title="Оплата и доставка">Оплата и доставка</a></li>
-                    <li><a href="//editus-dev.ru/offer.php" title="Акции и специальные предложения">Спецпредложения</a></li>
-                    <li><a href="//editus-dev.ru/new/terms.html" title="Пользовательское соглашение">Правила и условия</a></li>
-                    <li><a href="//editus-dev.ru/new/help.html" title="Часто задаваемые вопросы">Помощь</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/price.php" title="Стоимость услуг">Стоимость издания</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/oplata-i-dostavka.php" title="Оплата и доставка">Оплата и доставка</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php" title="Акции и специальные предложения">Спецпредложения</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/terms.html" title="Пользовательское соглашение">Правила и условия</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/help.html" title="Часто задаваемые вопросы">Помощь</a></li>
                   </ul>
                 </aside>
               
@@ -49,11 +49,11 @@
               <aside class="widget widget_categories">
                   <h3 class="widget-title">Услуги</h3>
                   <ul>
-                    <li><a href="//editus-dev.ru/services-text.php" title="Корректура и редактура">Работа с текстом</a></li>
-                    <li><a href="//editus-dev.ru/services-verstka.php" title="Дизайн книги">Дизайн книги</a></li>
-                    <li><a href="//editus-dev.ru/services-print.php" title="Печать тиража книги">Печать книг</a></li>
-                    <li><a href="//editus-dev.ru/services-public.php" title="Публикация издания">Публикация издания</a></li>
-                    <li><a href="//editus-dev.ru/services-certificate.php" title="Подарочный сертификат">Подарочный сертификат</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-text.php" title="Корректура и редактура">Работа с текстом</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-verstka.php" title="Дизайн книги">Дизайн книги</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-print.php" title="Печать тиража книги">Печать книг</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-public.php" title="Публикация издания">Публикация издания</a></li>
+                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-certificate.php" title="Подарочный сертификат">Подарочный сертификат</a></li>
                   </ul>
                 </aside>
               
@@ -90,7 +90,7 @@
           <div class="site-info">&copy; 2010 - <script language="javascript" type="text/javascript"> 
 var d = new Date( );
 document.write(d.getFullYear( ));
-			  </script>, <a href="//editus-dev.ru/index.php">ООО "Эдитус"</a>. Зарегистрированный товарный знак. Все права защищены.</div>
+			  </script>, <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/index.php">ООО "Эдитус"</a>. Зарегистрированный товарный знак. Все права защищены.</div>
           <!-- .site-info --> 
           
         </div>

@@ -317,7 +317,7 @@
                                         
                                         <cite>При верстке мы приведем в порядок текст: расставим абзацы; исправим дефис на тире, где это необходимо; уберем двойные пробелы. Для исправления грамматических ошибок и опечаток  необходимо дополнительно заказать корректуру.</cite>
                                     </blockquote>
-                                    <a href="//editus-dev.ru/new/help.html" class="more-link">Посмотреть другие вопросы <span class="meta-nav">→</span></a>
+                                    <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/help.html" class="more-link">Посмотреть другие вопросы <span class="meta-nav">→</span></a>
                                     <a href="#" onclick="jivo_api.open(); yaCounter1838947.reachGoal('jivosite'); return true;" class="redbutton">Задать вопрос</a>
 </section>
                                         

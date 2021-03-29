@@ -35,7 +35,7 @@
           <?php echo $res; ?>
       </tr>
   </table> 
-  <p><a class="more-link" href="//editus-dev.ru/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
+  <p><a class="more-link" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
   <h3>Дополнительно</h3>
   <table id="additionalcover">
 
@@ -86,7 +86,7 @@
             </tr>
        
         </table>
-        <p><a class="more-link" href="//editus-dev.ru/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
+        <p><a class="more-link" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
         <?php
     } 
     if ($_POST['do'] == 'getPaperSizeBlock'){
@@ -407,7 +407,7 @@
 												
 												
 //               <div class="alert">
-//                                                 	<strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//editus-dev.ru/offer.php">Подробнее >></a> 
+//                                                 	<strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php">Подробнее >></a> 
 //                                                 </div>
 												
 //               <input type="hidden" name="totalor" id="totslpriceor" value="'.($total).'"/>
@@ -439,7 +439,7 @@
                                     
                                     
     <div class="alert">
-        <strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//editus-dev.ru/offer.php">Подробнее >></a> 
+        <strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php">Подробнее >></a> 
     </div>
                                     
     <input type="hidden" name="totalor" id="totslpriceor" value="<?php echo $total; ?>"/>

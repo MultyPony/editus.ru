@@ -1,9 +1,9 @@
 <!-- FAV and TOUCH ICONS -->
-    <link rel="shortcut icon" href="//editus-dev.ru/new/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="//editus-dev.ru/new/images/ico/logo-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//editus-dev.ru/new/images/ico/logo-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//editus-dev.ru/new/images/ico/logo-72.png">
-    <link rel="apple-touch-icon-precomposed" href="//editus-dev.ru/new/images/ico/logo-57.png">
+    <link rel="shortcut icon" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/ico/logo-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/ico/logo-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/ico/logo-72.png">
+    <link rel="apple-touch-icon-precomposed" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/ico/logo-57.png">
     
     <!-- FONTS -->
 <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,700,100,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -15,16 +15,16 @@
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   	<!-- STYLES -->
-    <link rel="stylesheet" type="text/css" media="print" href="//editus-dev.ru/new/css/print.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/style.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/js/google-code-prettify/prettify.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/uniform.default.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/main.css">
-    <link rel="stylesheet" type="text/css" href="//editus-dev.ru/new/css/flexslider.css">
+    <link rel="stylesheet" type="text/css" media="print" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/print.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/style.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/google-code-prettify/prettify.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/uniform.default.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/main.css">
+    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/flexslider.css">
 
 <script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=VK-RTRG-156480-4JtJx';</script>
  

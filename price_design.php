@@ -1,4 +1,4 @@
 <?php
-  header('Location: https://editus-dev.ru/price.php#maket');
+  header('Location: https://<?php echo $_SERVER['SERVER_NAME'];?>/price.php#maket');
   exit;
 ?>

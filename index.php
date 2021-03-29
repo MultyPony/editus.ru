@@ -36,7 +36,7 @@
           
           <!-- .site-title -->
           <hgroup>
-            <a href="index.php" title="Издательство Эдитус" rel="home"><img src="//editus-dev.ru/new/images/logo.png" alt="Издательство Эдитус" width="120"></a> 
+            <a href="index.php" title="Издательство Эдитус" rel="home"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/logo.png" alt="Издательство Эдитус" width="120"></a> 
           <h4>Издательство <font style="font-family: Gotham, Helvetica Neue, Helvetica, Arial,' sans-serif';">Э&#x0301;</font>дитус<sup>&reg;</sup></h4>
           </hgroup>
           <!-- .site-title --> 
@@ -86,9 +86,9 @@
                                                 	
                                                     <!-- .tab-titles -->
                                                 	<ul class="tab-titles" style="text-align: center;">
-                                                    	<li ><a class="active" style="width: 296px;"><img src="//editus-dev.ru/img/main/lit_red.png" alt="Редакторская работа с текстом" /><h3>Редакторская работа с текстом</h3></a></li>
-                                                        <li><a style="width: 295px"><img src="//editus-dev.ru/img/main/design.png" alt="Уникальный дизайн книг" /><h3>Уникальный дизайн книг</h3></a></li>
-                                                        <li><a style="width: 296px"><img src="//editus-dev.ru/img/main/print.png" alt="Печать книг малыми тиражами"/><h3>Печать книг малыми тиражами</h1></a></h3></li>
+                                                    	<li ><a class="active" style="width: 296px;"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/lit_red.png" alt="Редакторская работа с текстом" /><h3>Редакторская работа с текстом</h3></a></li>
+                                                        <li><a style="width: 295px"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/design.png" alt="Уникальный дизайн книг" /><h3>Уникальный дизайн книг</h3></a></li>
+                                                        <li><a style="width: 296px"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/print.png" alt="Печать книг малыми тиражами"/><h3>Печать книг малыми тиражами</h1></a></h3></li>
                                                     </ul>
                                                     <!-- .tab-titles -->
                                                     
@@ -313,7 +313,7 @@
                                     <!-- .entry-header -->
                                     <header class="entry-header">
                                         <h1 class="entry-title">
-											<a href="//editus-dev.ru/new/online.html" title="Как издать книгу" rel="bookmark">Как издать книгу</a>
+											<a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html" title="Как издать книгу" rel="bookmark">Как издать книгу</a>
                                         </h1>
                                         <p> «Эдитус» – это издательство, в котором можно напечатать книгу в одном экземпляре или небольшим тиражом. Мы работаем с клиентами из Москвы и других городов России, а также с зарубежными заказчиками. Современное печатное оборудование и квалифицированные сотрудники позволяют нам недорого выполнять заказы любого формата, обеспечивая первоклассное качество результата, соответствующее мировым стандартам.<br><br></p>
                                     </header>
@@ -449,7 +449,7 @@
                                     <div class="entry-content">
                                     	
                                         <video autoplay muted loop>
-							  				<source src="//editus-dev.ru/new/video/video-2.mp4" type="video/mp4">
+							  				<source src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/video/video-2.mp4" type="video/mp4">
 										</video>
                                         
                                         <p class="drop-cap">Мы гордимся качеством наших книг. Печать книг производится на современном цифровом оборудовании. Для защиты обложки от негативных воздействий окружающей среды используется матовая или глянцевая ламинация. Мы <span class="label">гарантируем бесплатную перепечатку</span> тиража в случае выявления в книге брака, допущенного по нашей вине как на стадии предпечатной подготовки, так и непосредственно при печати.
