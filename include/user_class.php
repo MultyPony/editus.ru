@@ -273,7 +273,7 @@ class User {
                         for ($p = 0; $p < 6; $p++) {
                             $val = rand(1, 16);
                             $pass = dechex($val);
-                            $newpass = $newpass . $pass;
+                            $newpass = (isset($newpass) ? $newpass : '') . $pass;
                         }
                         $row = $db->fetch_array();
                         $userFirstName = $row['userFirstName'];

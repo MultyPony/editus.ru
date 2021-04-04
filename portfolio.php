@@ -4464,9 +4464,9 @@
       <!-- #main --> 
 <?php include 'footer.php';?>
 <?php include 'scripts_read.php';?>
-<script src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/jquery.isotope.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/jquery.fancybox-1.3.4.css">
-    <script src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="new/js/jquery.isotope.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/css/jquery.fancybox-1.3.4.css">
+    <script src="new/js/jquery.fancybox-1.3.4.pack.js"></script>
 
 </body>
 </html>

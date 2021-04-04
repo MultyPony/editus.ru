@@ -24,6 +24,9 @@ class Db {
         } else {
             $this->db->select_db(Main_config::$db);
             $this->dbn=$this->db;
+            $this->db->query("SET NAMES 'utf8'"); 
+            $this->db->query("SET CHARACTER SET utf8");  
+            $this->db->query("SET SESSION collation_connection = 'utf8_unicode_ci'"); 
         }
     }
 

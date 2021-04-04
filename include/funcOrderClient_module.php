@@ -29,11 +29,13 @@ function listprojects(&$e, &$t, &$u) {
                     $data['addserviceprice'] = ceil($_POST['total']-$_POST['totalor']);
                     $data['additionalservice'] = $_POST['additionalservice'];
                     $data['bookstore'] = $_POST['bookstore'];
+                    
                     if ($_POST['colorblock']=='black'){
                         $data['colorblock'] = 11;
                     }elseif($_POST['colorblock']=='color'){
                         $data['colorblock'] = 44;
                     }
+                    
                     $db->query("INSERT INTO UsersProjects 
                                 SET projectCount = '" . intval($_POST['count']) . "',
                                     projectTotal = '" . intval($_POST['total']) . "',

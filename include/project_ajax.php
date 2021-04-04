@@ -35,7 +35,7 @@
           <?php echo $res; ?>
       </tr>
   </table> 
-  <p><a class="more-link" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
+  <p><a class="more-link" href="new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
   <h3>Дополнительно</h3>
   <table id="additionalcover">
 
@@ -65,7 +65,7 @@
         }else{
             $sql= "Color <> '1'";
         }
-        $db->query("SELECT PaperTypeId, PaperTypeName, PaperTypeWeight FROM PaperTypeCostsBlock WHERE ".$sql);
+        $db->query("SELECT PaperTypeId, PaperTypeName, PaperTypeWeight FROM papertypecostsblock WHERE ".$sql);
         while ($row = $db->fetch_array()) {
             if (!isset($res)) {
                 $res = '';
@@ -86,7 +86,7 @@
             </tr>
        
         </table>
-        <p><a class="more-link" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
+        <p><a class="more-link" href="new/online.html#paper" target="_blank">Какую бумагу лучше выбрать?</a></p>
         <?php
     } 
     if ($_POST['do'] == 'getPaperSizeBlock'){
@@ -128,9 +128,9 @@
         //                                  AND BindingType.BindingMax >= '".intval($_POST['pages'])."' "
         // );
 
-        $db->query("SELECT BindingType.BindingId, BindingType.BindingName, CoverType
-                    FROM BindingType WHERE BindingType.BindingMin <= '".intval($_SESSION['pages'])."' 
-                                        AND BindingType.BindingMax >= '".intval($_SESSION['pages'])."' "
+        $db->query("SELECT BindingId, BindingName, CoverType
+                    FROM bindingtype WHERE BindingMin <= '".intval($_SESSION['pages'])."' 
+                                        AND BindingMax >= '".intval($_SESSION['pages'])."' "
         );
         
         if ($db->num_rows() >= 1){
@@ -180,7 +180,15 @@
         }
         $res .= '';
         echo $res;
-    }    
+    }
+    
+    if ($_POST['do'] == 'getISBNprice'){
+        $db = new Db();
+        $db->query("SELECT AdditionalServiceCost FROM AdditionalServiceCosts WHERE AdditionalServiceEnable = '1' AND AdditionalServiceId = '10' ");
+        $row = $db->fetch_array();
+        echo $row[0];
+    }
+
     if ($_POST['do']=='calc'){
         $db = new Db();
 //        if (!empty($_POST['additional_cover'])){
@@ -243,7 +251,7 @@
         $pr_papertypecover = $row[0];
         
         // $size_paper = $_POST['size_paper'];
-        $size_paper = $_SESSION['size_paper'];
+        $size_paper = $_SESSION['size_paper']; //
 
         $db->query("SELECT formatInA3, formatName, formatWidth, formatHeight 
                     FROM PaperFormat 
@@ -294,7 +302,8 @@
 //        $koef16 = $row16[0];
 		
         // $size_paper = $_POST['size_paper'];
-        $size_paper = $_SESSION['size_paper'];
+        // $size_paper = $_SESSION['size_paper'];
+        $size_paper = $_SESSION['book_size'];
 
         $db->query("SELECT BindingCosts 
                     FROM BindingTypeCosts 
@@ -313,12 +322,21 @@
 
 //        $koef=1;
         
+        // Получить стоимость издательского пакета
+        $db->query("SELECT AdditionalServiceCost FROM AdditionalServiceCosts WHERE AdditionalServiceEnable = '1' AND AdditionalServiceId = '10' ");
+        $row = $db->fetch_array();
+        $isbnPrice = $row[0];
+
+        if ($_POST['isbnChecked'] == 'false') {
+            $isbnPrice = 0;
+        }
+        
         $allblock = ceil((($pr_printtypeblock + $pr_papertypeblock) * $pages / $pr_pagesona3) * $count * $koef);
         $allcover = ceil((($pr_printtypecover + $pr_papertypecover + $pr_additionalcover ) / $pr_pagesona3 * 4) * $count * $koef);
         $allbind = ceil($pr_bind * $count * $koef);
         $correct = ($pages * 68);
 		$maket = ($pages * 18);
-        $total = ($allblock+$allcover+$allbind);
+        $total = ($allblock+$allcover+$allbind + $isbnPrice);
 		$sale = $total * 0.8;
         
 //        $allblock16 = ceil((($pr_printtypeblock + $pr_papertypeblock) * $pages / $pr_pagesona3) * $count16 * $koef16);
@@ -379,41 +397,10 @@
 		$d = date ( "d.m.Y" , mktime(0, 0, 0, date("m"), date("d")+$srok, date("Y")));
 	
         $fixbind = isset($fixbind) ? $fixbind : "";
-//             echo '<table width="100%">
-//                     <tr>
-//                         <td colspan="2">
-//                             <h3>'.$covers[$_POST['papertype_cover']][0].'</h3>
-//                         </td>
-//                     </tr>
-//                     <tr>
-//                         <td><img src="img/bindtype_'.$_POST['bind'].'.jpg" border="0"></td>
-//                         <td>Размер: <b>'.$pr_pagesona3_name.'</b> '.$pr_pagesona3_name_hw.'<br> 
-//                             Крепление: '.$pr_bind_name.'<br> 
-//                             Обложка цветная с матовой ламинацией<br>
-// 							Блок: '.$pr_printtypeblock_name.', '.$pr_papertypeblock_name.', '.$pages.' стр.<br>
-//                             Тираж: <b>'.$count.' экз. '.$ekz.'</b><br>
-// 							'.$fixbind.'
-//                         </td>
-//                     </tr> 
-//               </table>     
-              
-//               <table id="ads"></table>'.$ISBN.'
-              								
-//             <h2>Стоимость печати тиража: <span class="label" id="vpr">'.($total).'</span> руб.</h2>
-// Ориентировочная дата готовности: '.$d.'
 
-// <br><br>
-
-												
-												
-//               <div class="alert">
-//                                                 	<strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php">Подробнее >></a> 
-//                                                 </div>
-												
-//               <input type="hidden" name="totalor" id="totslpriceor" value="'.($total).'"/>
-//               <input type="hidden" name="total" id="totslprice" value="'.($total).'"/> 
-//               ';
+        $lamination = $_POST['lamination'] == 'matte' ? 'матовой' : 'глянцевой';
     ?>
+
     <table width="100%">
         <tr>
             <td colspan="2">
@@ -424,7 +411,8 @@
             <td><img src="<?php echo "img/bindtype_" . $_POST['bind'] . ".jpg"; ?>" border="0"></td>
             <td>Размер: <b><?php echo $pr_pagesona3_name; ?></b> <?php echo $pr_pagesona3_name_hw; ?><br> 
                 Крепление: <?php echo $pr_bind_name; ?><br> 
-                Обложка цветная с матовой ламинацией<br>
+                <!-- Обложка цветная с матовой ламинацией<br> -->
+                Обложка цветная с <?php echo $lamination; ?> ламинацией<br>
                 Блок: <?php echo "$pr_printtypeblock_name".', '.$pr_papertypeblock_name.', '.$pages." стр."; ?><br>
                 Тираж: <b><?php echo $count.' экз. '.$ekz; ?></b><br>
                 <?php echo $fixbind ?>
@@ -439,7 +427,7 @@
                                     
                                     
     <div class="alert">
-        <strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php">Подробнее >></a> 
+        <strong> ВНИМАНИЕ: </strong>Стоимость указана за услуги печати с <strong>готовых</strong> оригинал-макетов. Выполните верстку <a href="new/verstka.html" target="_blank">самостоятельно</a> или <strong>закажите подготовку макета</strong> и получите <span class="label">Издательский пакет бесплатно! </span> <a href="offer.php">Подробнее >></a> 
     </div>
                                     
     <input type="hidden" name="totalor" id="totslpriceor" value="<?php echo $total; ?>"/>

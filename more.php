@@ -99,7 +99,7 @@ $dataitem['itemTypeCover'] = $cover[$dataitem['itemTypeCover']];
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <p>
-<div class="fb-like" data-href="//<?php echo $_SERVER['SERVER_NAME'];?>/more.php?itemid=<?php echo $id ?>" data-send="false" data-layout="button_count" data-width="150" data-show-faces="true" data-action="recommend"></div> 
+<div class="fb-like" data-href="more.php?itemid=<?php echo $id ?>" data-send="false" data-layout="button_count" data-width="150" data-show-faces="true" data-action="recommend"></div> 
 </p>
 <p>
 <!-- Put this div tag to the place, where the Like block will be -->

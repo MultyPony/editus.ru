@@ -322,7 +322,7 @@ function supportadmin(&$e) {
                       FROM Users
                       WHERE userId = '".intval($_POST['userid'])."'");
        $t = $db->fetch_array();
-       $e->mail($t[0], 'Новое сообщение', 'Вы получили ответ на Ваше сообщение в службу техподдержки. Для прочтения перейдите по ссылке - //<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=viewsupportmess&id='.intval($_POST['replyId']));
+       $e->mail($t[0], 'Новое сообщение', 'Вы получили ответ на Ваше сообщение в службу техподдержки. Для прочтения перейдите по ссылке - editus.php?do=viewsupportmess&id='.intval($_POST['replyId']));
     }
     $datamess = array();
     $db->query("SELECT messId, replyId, subj, is_read, is_read_ans, userId, catId, date

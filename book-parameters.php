@@ -53,20 +53,20 @@ require_once './config.inc.php';
         <![endif]-->
 
 	<!-- STYLES -->
-	<link rel="stylesheet" type="text/css" media="print" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/style.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/google-code-prettify/prettify.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/uniform.default.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/main.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" media="print" href="new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="new/css/style.css">
+	<link rel="stylesheet" type="text/css" href="new/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="new/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="new/js/google-code-prettify/prettify.css">
+	<link rel="stylesheet" type="text/css" href="new/css/uniform.default.css">
+	<link rel="stylesheet" type="text/css" href="new/css/main.css">
+	<link rel="stylesheet" type="text/css" href="new/css/flexslider.css">
 	<!-- SCRIPTS -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>
-		window.jQuery || document.write('<script src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/jquery-1.8.3.min.js"><\/script>')
+		window.jQuery || document.write('<script src="new/js/jquery-1.8.3.min.js"><\/script>')
 	</script>
 	<script type="text/javascript" src="js/project.js"></script>
 	<script>
@@ -74,6 +74,7 @@ require_once './config.inc.php';
 			$('#site-navigation > ul > li').removeClass('current-menu-item').eq(1).addClass('current-menu-item')
 		});
 	</script>
+	<script type="text/javascript" src="cdek/widjet.js" charset="utf-8" id="ISDEKscript"></script>
 	<style>
 		label, input {
 			cursor: pointer;
@@ -144,7 +145,7 @@ require_once './config.inc.php';
 											<tr align="center">
 												<td>
 													<label for="bblackp">
-														<img src="../img/black.jpg" title="Черно-белая печать" alt="Черно-белая печать"><br>Черно-белая
+														<img src="/img/black.jpg" title="Черно-белая печать" alt="Черно-белая печать"><br>Черно-белая
 														печать
 													</label>
 													<input id="bblackp" type="radio" name="colorblock" value="black" />
@@ -195,17 +196,17 @@ require_once './config.inc.php';
 													</table>
 												</div>
 											</div>
-											<p><a class="more-link" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/pereplet.html" target="_blank">Какой переплет выбрать?</a></p>
+											<p><a class="more-link" href="new/pereplet.html" target="_blank">Какой переплет выбрать?</a></p>
 										</div>
 										
 										<!-- Ламинация -->
 										<div class="lamination-wrap" style="display: none;">
 											<h3 class="lamination__title">Ламинация</h3>
 											<label class="lamination__label">
-												<input class="lamination__input" type="radio" name="lamination">Матовая
+												<input class="lamination__input" type="radio" name="lamination" value="matte">Матовая
 											</label>
 											<label class="lamination__label">
-												<input class="lamination__input" type="radio" name="lamination">Глянцевая
+												<input class="lamination__input" type="radio" name="lamination" value="glossy">Глянцевая
 											</label>
 										</div>
 										
@@ -222,43 +223,65 @@ require_once './config.inc.php';
 										</div>
 
 										<!-- Дополнительные услуги -->
-										<h2>Дополнительные услуги</h2>
-										<table id="ads">
-											<tbody>
-												<!-- <tr>
-													<td>
-														<input type="hidden" id="8" name="8" value="1500">
-														<label>
-															<input type="checkbox" name="additionalservice[]" value="8"> Дизайн обложки (включает название книги, имя автора, одноцветный фон, одно предоставленное Вами изображение; либо доработку Вашего макета обложки согласно техническим требованиям типографий) ( <a href="http://www.editus.ru/price_design.php" target="_blank">?</a> ) 
-														</label>
-													</td>
-												</tr> -->
-												<tr>
-													<td>
-														<input type="hidden" id="10" name="10" value="2000">
-														<label>
-															<input type="checkbox" name="additionalservice[]" value="10"> Издательский пакет (ISBN, номера УДК, ББК, авторский знак, 16 обязательных экземпляров книги в РКП (Федеральный Закон "Об обязательном экземпляре документов") ( <a href="http://www.bookchamber.ru/oe.html" target="_blank">?</a> ) 
-														</label>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+										<section id="additional-services" style="display: none;">
+											<h2>Дополнительные услуги</h2>
+											<table id="isbn">
+												<tbody>
+													<tr>
+														<td>
+															<input type="hidden" id="10" name="10" value="2000">
+															<label>
+																<input type="checkbox" name="isbn" value="10"> Издательский пакет (ISBN, номера УДК, ББК, авторский знак, 16 обязательных экземпляров книги в РКП (Федеральный Закон "Об обязательном экземпляре документов") ( <a href="http://www.bookchamber.ru/oe.html" target="_blank">?</a> ) 
+															</label>
+														</td>
+													</tr>
+												</tbody>
+											</table>
 
-										<div  id="delivery" style="display: ;" class="validate-form">
-                                                <h5>Тип доставки</h5>
-                                                <label class="inline-label">
-                                                	<input type="radio" name="typedeliv" value="pickup" /> Самовывоз
-                                                </label>
-                                                <label class="inline-label">
-                                                    <input type="radio" name="typedeliv" value="deliver" /> Доставка
-                                                </label>
-                                                <label class="inline-label cdek-label">
-                                                    <input type="radio" name="typedeliv" value="pickup-point" onclick='cartWidjet.open()'/> Пункт самовывоза
-                                                </label>
-           								 </div>
+											<div  id="delivery" class="validate-form">
+													<h5>Тип доставки</h5>
+													<label class="inline-label">
+														<input type="radio" name="typedeliv" value="pickup" /> Самовывоз
+													</label>
+													<label class="inline-label">
+														<input type="radio" name="typedeliv" value="deliver" /> Доставка
+													</label>
+													<label class="inline-label cdek-label">
+														<input type="radio" name="typedeliv" value="pickup-point" onclick='cartWidjet.open()'/> Пункт самовывоза
+													</label>
+											</div>
 
+											<!-- Поля для СДЭК -->
+											<div id="pvz_cdek" style="display: none;">
+												<div>
+													<table width="100%">
+														<tbody>
+															<tr>
+																<td style="text-align: right; width:35%">
+																	<span id="show_pvz_address">Адрес ПВЗ:</span>
+																</td>
+																<td style="text-align: left; vertical-align: middle;">
+																	<input id="os3_pvz_address" type="text" name="os3_pvz_address" readonly>
+																</td>
+															</tr>
+															<tr>
+																<td style="text-align: right; width:35%">
+																	<span id="show_delivery_price">Стоимость доставки:</span>
+																</td>
+																<td style="text-align: left; vertical-align: middle;">
+																	<input id="os3_delivery_price" type="text" readonly>
+																	<input id="hidden_del_price" type="hidden" value="0" name="os3_delivery_price"/>
+																	<input id="hidden_del_citytoid" type="hidden" value="0" name="os3_delivery_citytoid"/>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>             
+											</div>
 
-
+											
+										</section>
+										
 										<!-- <input type="button" id="topapercover" class="button" value="Назад" /> -->
 										<input id="toadd" type="button" class="button red" value="Далее" />
 									</div> <!-- id="block" -->
@@ -280,5 +303,30 @@ require_once './config.inc.php';
 			</div> <!-- row row-fluid -->
 		</section>
 	<?php include 'footer.php'; ?>
+
+	<script type="text/javascript">
+        var cartWidjet = new ISDEKWidjet({
+            defaultCity: 'auto',
+            cityFrom: 'Москва',
+            hidedelt: true,
+            popup: true,
+            goods: [{
+                length: 25,
+                width: 17,
+                height: 7,
+                weight: 100, // Изменить вес 
+				
+            }],
+            onChoose: function(wat) {
+                window.pvz = wat;
+                window.showPvzFields();
+
+            },
+        });
+		// <?php //echo round($massa/1000,1); ?>
+
+
+    </script>
+
 </body>
 </html>

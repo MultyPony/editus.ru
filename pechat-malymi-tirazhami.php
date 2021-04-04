@@ -2,7 +2,7 @@
 $ref = $_SERVER['QUERY_STRING']; 
 if ( !empty($ref) ) $ref = '?'.$ref; 
 header('HTTP/1.1 301 Moved Permanently'); 
-header('Location: //<?php echo $_SERVER['SERVER_NAME'];?>/services-print.php'.$ref); 
+header('Location: services-print.php'.$ref); 
 exit(); 
 ?>
 <?php session_start(); ?>

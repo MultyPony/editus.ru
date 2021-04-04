@@ -30,15 +30,15 @@
         <![endif]-->
 
 	<!-- STYLES -->
-	<link rel="stylesheet" type="text/css" media="print" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/grid.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/style.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/js/google-code-prettify/prettify.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/uniform.default.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/main.css">
-	<link rel="stylesheet" type="text/css" href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" media="print" href="new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="new/css/style.css">
+	<link rel="stylesheet" type="text/css" href="new/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="new/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="new/js/google-code-prettify/prettify.css">
+	<link rel="stylesheet" type="text/css" href="new/css/uniform.default.css">
+	<link rel="stylesheet" type="text/css" href="new/css/main.css">
+	<link rel="stylesheet" type="text/css" href="new/css/flexslider.css">
 	<!-- SCRIPTS -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->

@@ -48,7 +48,7 @@
           
           <!-- .site-title -->
           <hgroup>
-            <a href="index.php" title="Издательство Эдитус" rel="home"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/images/logo.png" alt="Издательство Эдитус" width="120"></a> 
+            <a href="index.php" title="Издательство Эдитус" rel="home"><img src="new/images/logo.png" alt="Издательство Эдитус" width="120"></a> 
           <h4>Издательство <font style="font-family: Gotham, Helvetica Neue, Helvetica, Arial,' sans-serif';">Э&#x0301;</font>дитус<sup>&reg;</sup></h4>
           </hgroup>
           <!-- .site-title --> 
@@ -80,23 +80,23 @@
 <!-- #site-navigation -->
           <nav id="navbar" class="main-navigation" role="navigation">
             <ul class="dropdown">
-              <li class="dropdown-top"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/about.php">Издательство</a>
+              <li class="dropdown-top"><a href="about.php">Издательство</a>
               	<ul class="dropdown-inside">
-              		<li class="dropdown-inside"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services.php">Услуги</a>
+              		<li class="dropdown-inside"><a href="services.php">Услуги</a>
                     <ul class="dropdown-inside2">
-                        	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-text.php">Работа с текстом</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-verstka.php">Дизайн книги</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-print.php">Печать книг</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-public.php">Публикация книг</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/services-certificate.php">Подарочный сертификат</a></li>
+                        	<li><a href="services-text.php">Работа с текстом</a></li>
+                            <li><a href="services-verstka.php">Дизайн книги</a></li>
+                            <li><a href="services-print.php">Печать книг</a></li>
+                            <li><a href="services-public.php">Публикация книг</a></li>
+                            <li><a href="services-certificate.php">Подарочный сертификат</a></li>
                         </ul>
                     </li>
-                   <!-- <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/price.php">Стоимость</a></li>-->
-                    <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/portfolio.php">Портфолио</a></li>
-                	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/review.php">Отзывы</a></li>
-               		<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/offer.php">Скидки</a></li>
-                   	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/partner.php">Партнерство</a></li>
-                    <li class="dropdown-inside"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/contact.php">Контакты</a>
+                   <!-- <li><a href="price.php">Стоимость</a></li>-->
+                    <li><a href="portfolio.php">Портфолио</a></li>
+                	<li><a href="review.php">Отзывы</a></li>
+               		<li><a href="offer.php">Скидки</a></li>
+                   	<li><a href="partner.php">Партнерство</a></li>
+                    <li class="dropdown-inside"><a href="contact.php">Контакты</a>
                     <!--	<ul class="dropdown-inside2">
                         	<li><a href="contact.php#office">Офис</a></li>
                             <li><a href="contact.php#sklad">Склад</a></li>
@@ -104,13 +104,13 @@
                     </li>
                 </ul>
               </li>
-              		<li class="dropdown-top"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/print.html">Печать</a>
+              		<li class="dropdown-top"><a href="new/print.html">Печать</a>
               			<ul class="dropdown-inside">
-                        	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/project.php">Оформить заказ</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/online.html">Инструкция</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/equip.html">Оборудование</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/oplata-i-dostavka.html">Оплата и доставка</a></li>
-                            <li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/help.html">Помощь</a></li>
+                        	<li><a href="project.php">Оформить заказ</a></li>
+                            <li><a href="new/online.html">Инструкция</a></li>
+                            <li><a href="new/equip.html">Оборудование</a></li>
+                            <li><a href="new/oplata-i-dostavka.html">Оплата и доставка</a></li>
+                            <li><a href="new/help.html">Помощь</a></li>
                         </ul>
                 	</li>
               		<li class="dropdown-top"><a href="//maket.editus.ru">Дизайн</a>
@@ -121,13 +121,13 @@
                         </ul>
                     </li>
               
-              <li class="dropdown-top"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/advices.html">Советы</a></li>
-              <li class="dropdown-top"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/bookstore.php">Книги</a>
+              <li class="dropdown-top"><a href="new/advices.html">Советы</a></li>
+              <li class="dropdown-top"><a href="bookstore.php">Книги</a>
               			
 				</li>
-              <li class="dropdown-top"><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=listprojects">Аккаунт <span class="meta-nav">→</span></a>
+              <li class="dropdown-top"><a href="editus.php?do=listprojects">Аккаунт <span class="meta-nav">→</span></a>
               			<ul class="dropdown-inside">
-                        	<li><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=listprojects">Печать</a></li>
+                        	<li><a href="editus.php?do=listprojects">Печать</a></li>
                             <li><a href="//maket.editus.ru/my-account/">Дизайн</a></li>
                         </ul>
                   </li>
@@ -158,9 +158,9 @@
                                                 	
                                                     <!-- .tab-titles -->
                                                 	<ul class="tab-titles" style="text-align: center;">
-                                                    	<li ><a class="active" style="width: 296px;"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/lit_red.png" alt="Редакторская работа с текстом" /><h3>Редакторская работа с текстом</h3></a></li>
-                                                        <li><a style="width: 295px"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/design.png" alt="Уникальный дизайн книг" /><h3>Уникальный дизайн книг</h3></a></li>
-                                                        <li><a style="width: 296px"><img src="//<?php echo $_SERVER['SERVER_NAME'];?>/img/main/print.png" alt="Печать книг малыми тиражами"/><h3>Печать книг малыми тиражами</h1></a></h3></li>
+                                                    	<li ><a class="active" style="width: 296px;"><img src="img/main/lit_red.png" alt="Редакторская работа с текстом" /><h3>Редакторская работа с текстом</h3></a></li>
+                                                        <li><a style="width: 295px"><img src="img/main/design.png" alt="Уникальный дизайн книг" /><h3>Уникальный дизайн книг</h3></a></li>
+                                                        <li><a style="width: 296px"><img src="img/main/print.png" alt="Печать книг малыми тиражами"/><h3>Печать книг малыми тиражами</h1></a></h3></li>
                                                     </ul>
                                                     <!-- .tab-titles -->
                                                     
@@ -712,7 +712,7 @@
                                     <div class="entry-content">
                                     	
                                         <video autoplay muted loop>
-							  				<source src="//<?php echo $_SERVER['SERVER_NAME'];?>/new/video/video-2.mp4" type="video/mp4">
+							  				<source src="new/video/video-2.mp4" type="video/mp4">
 										</video>
                                         
                                         <p>Мы гордимся качеством наших книг. Печать книг производится на современном цифровом оборудовании. Для защиты обложки от негативных воздействий окружающей среды используется матовая или глянцевая ламинация. Мы <span class="label">гарантируем бесплатную перепечатку</span> тиража в случае выявления в книге брака, допущенного по нашей вине как на стадии предпечатной подготовки, так и непосредственно при печати.

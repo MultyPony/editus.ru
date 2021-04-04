@@ -47,14 +47,14 @@
       	<h1 class="entry-title">Есть ли у Вас готовый к печати макет книги?</h1>
       </header>
 	  <div class="entry-content">
-                                        <p>Чтобы отправить книгу в печать, необходимо подготовить <strong>макет книги</strong>: дизайн обложки и верстку блока. Вы можете подготовить макеты <a href="//<?php echo $_SERVER['SERVER_NAME'];?>/new/verstka.html">самостоятельно</a> или заказать наши услуги.
+                                        <p>Чтобы отправить книгу в печать, необходимо подготовить <strong>макет книги</strong>: дизайн обложки и верстку блока. Вы можете подготовить макеты <a href="new/verstka.html">самостоятельно</a> или заказать наши услуги.
                                         </p>
                                     </div>
 	  								
 									<div class="home-btn">
-                                        <div class="span6"><span class="btn-home-black" ><center><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/project.php">ДА, я загружу свой макет</a></center></span>
+                                        <div class="span6"><span class="btn-home-black" ><center><a href="project.php">ДА, я загружу свой макет</a></center></span>
 										<center><h5>Расчет стоимости и <br>отправка книги в печать <abbr title="online">онлайн</abbr></h5></center></div>
-                                        <div class="span6"><span class="btn-home" ><center><a href="//<?php echo $_SERVER['SERVER_NAME'];?>/design-book.php" class="button red">НЕТ, мне нужна помощь</a></center></span>
+                                        <div class="span6"><span class="btn-home" ><center><a href="design-book.php" class="button red">НЕТ, мне нужна помощь</a></center></span>
 										<center><h5>Советы по самостоятельной подготовке <br>и наши услуги</h5></center></div>
                                         
                                     </div>

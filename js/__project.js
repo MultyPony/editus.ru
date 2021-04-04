@@ -7,6 +7,14 @@ $(function(){
     let author = document.querySelector(authorSelector);
     let nextBtn = document.querySelector(nextBtnSelector);
 
+    //Отмена отправки формы при нажатии Enter
+    $('form input').keydown(function(e) {
+        if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+        }
+    });
+
     // Проверка полей автора и книги
     $(nextBtn).click(function() {
         if (bookName.value == '' || author.value == '' ) {
@@ -30,7 +38,11 @@ $(function(){
     });
 
     $('#uploadblock').click(function(){
-        $('#uploadblock_file').click();        
+        $('#pdf-info').fadeOut();
+        $('#book-parameters-btn').fadeOut();
+        $('#messerror').fadeOut();
+
+        $('#uploadblock_file').click();     
     });
 
     $('#uploadblock_file').change(function(evt){
@@ -54,7 +66,14 @@ $(function(){
 
         var form_data = new FormData();                  
         form_data.append('file', file_data);
-        // console.log(form_data);                             
+        // console.log(form_data);
+        
+        
+        $('.loading-block').show();
+        $('#uploadblock').prop('disabled', true);    
+        $('#uploadblock').css('cursor','not-allowed');    
+        
+        
         $.ajax({
             url: 'upload.php', // point to server-side PHP script 
             dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -69,17 +88,24 @@ $(function(){
                     if ('success' in response) {
                         console.log('Файл прошел проверку');
                         // after all checks
-                        $('#os1_booksize').text(response.bookSize);
-                        $('#os1_pagenumber').text(response.pageNumber);
+                        $('#os1_booksize').text(response.bookWidth + "х" + response.bookHeight);
+                        $('input[name=book-size]').val(response.formatId);
+                        $('#os1_pagenumber').text(response.pageCount);
+                        $('input[name=page-count]').val(response.pageCount);
                         $('#pdf-info').fadeIn();
                         $('#book-parameters-btn').fadeIn();
                         // $('#uploadblock').css("background-color", "#333");
                         $('#uploadblock').addClass('black');
                         $('#uploadblock').removeClass('red');
                     } else {
+                        $('#messerror').text(response.error);
+                        $('#messerror').fadeIn(response.error);
                         console.log('Файл не прошел проверку');
                         console.log(response.error);
                     }
+                    $('.loading-block').hide();
+                    $('#uploadblock').prop('disabled', false);
+                    $('#uploadblock').css('cursor','pointer'); 
                 }
             }
         });

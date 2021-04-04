@@ -31,7 +31,7 @@ if ($_GET['type'] == 'pub'){
     $data = $db->fetch_array();
     $data['order_amount'] = ($data['order_amount'] * 100);
     $data['order_id'] = 'pub' . $data['order_id'];
-    $data['back_url'] = "https://<?php echo $_SERVER['SERVER_NAME'];?>/bill/cardpay/revert_result.php";
+    $data['back_url'] = "https:bill/cardpay/revert_result.php";
     Log::save($data);
     $cardres = $CardPay->getOrderRegInfo($data['order_id']);
     if ($cardres['status'] == 0){
@@ -45,7 +45,7 @@ if ($_GET['type'] == 'pub'){
         exit(0);
     }
 
-    header("Location: https://<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=orderstep4&o=" . intval($_GET['o']) . '&paycard_status=99');
+    header("Location: https:editus.php?do=orderstep4&o=" . intval($_GET['o']) . '&paycard_status=99');
     exit(0);
 }
 
@@ -71,7 +71,7 @@ if ($_GET['type'] == 'sho'){
     $data = $db->fetch_array();
     $data['order_amount'] = ($data['order_amount'] * 100);
     $data['order_id'] = 'sho' . $data['order_id'];
-    $data['back_url'] = "https://<?php echo $_SERVER['SERVER_NAME'];?>/bill/cardpay/revert_result.php";
+    $data['back_url'] = "https:bill/cardpay/revert_result.php";
     Log::save($data);
     $CardPay->removeRegInfo($data['order_id']);
     $CardPay->registerOrder($data);
@@ -82,7 +82,7 @@ if ($_GET['type'] == 'sho'){
         exit(0);
     }
 
-    header("Location: https://<?php echo $_SERVER['SERVER_NAME'];?>/editus.php?do=shoporderstep2&o=" . intval($_GET['o']) . '&paycard_status=99');
+    header("Location: https:editus.php?do=shoporderstep2&o=" . intval($_GET['o']) . '&paycard_status=99');
     exit(0);
 }
 
