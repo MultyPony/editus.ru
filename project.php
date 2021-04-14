@@ -9,7 +9,9 @@
 			'author' => 'os1_author',
 			'book_name' => 'os1_name',
 			'pages' => 'page-count',
-			'book_size' => 'book-size'
+			'book_format_id' => 'book-size',
+			'book_width' => 'book-width',
+			'book_height' => 'book-height',
 		];
 		foreach ($vals as $key => $val) {
 			if (isset($_POST[$val])) {
@@ -275,6 +277,8 @@ require_once './config.inc.php';
 									<!-- </div> -->
 								</div>
 								<input type="text" hidden name="book-size">
+								<input type="text" hidden name="book-width">
+								<input type="text" hidden name="book-height">
 								<input type="text" hidden name="page-count">
 							</form>
 						</fieldset>

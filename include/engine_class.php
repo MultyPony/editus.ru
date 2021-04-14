@@ -80,7 +80,7 @@ class Engine {
         }
     }
 
-    // 
+    
     function call_function(&$tpl, &$usr, $g=0) {
         $funcname = $this->do;
         if ($funcname != 'editsettings' && $funcname != 'logout' && $funcname != 'login' && $funcname != 'register_partner' && $funcname != 'register' && $funcname != 'recover_password' && $funcname != 'activate') {

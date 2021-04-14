@@ -2,6 +2,8 @@ $(function(){
     // if ($('#softpages').length >0){
 //        $('#block').hide();
 
+        let main_file_name = 'editus.php';
+
         $('#cover').hide();
         $('#topapercover').hide();
         $('.megatitle').text('Конфигурация блока');
@@ -30,6 +32,7 @@ $(function(){
             $.post('include/project_ajax.php',
                 {
                     'do':'calc',
+                    'orderid': $('input[name=orderid]').val(),
                     'size_paper': $('input[name=size]:checked').val(),
                     'pages' : $('#softpages').val(),
                     'count' : $('#softcount').val(),
@@ -42,7 +45,37 @@ $(function(){
                     'delivery_type' : deliveryType,
                     'city_id_for_CDEK' : deliveryType == 'pickup-point' ? $('#hidden_del_citytoid').val() : false,
                 }, function(data) {
-                    $('#total').html(data);
+                    let response = JSON.parse(data);
+                    let bindType = $('input[name=binding]:checked').val();
+                    let bindTypeText = $('input[name=binding]:checked').siblings().text();
+                    let coverType = $('input[name=binding]:checked').data('coverType');
+                    let coverTitle = (coverType == 'soft' ? 'Мягкая' : 'Твёрдая');
+                    
+                    coverTitle = coverTitle + ' обложка'
+                    $('.typeofcover').text(coverTitle);
+                    $('.bind_img').attr("src", `img/bindtype_${bindType}.jpg`);
+
+                    $('.bind_name').text(bindTypeText);
+
+                    let lamination = $('input[name=lamination]:checked').val();
+                    $('.lamination_type').text(lamination == 'matte' ? 'матовой' : 'глянцевой');
+
+                    $('.pr_printtypeblock_name').text(response.printTypeBlockName);
+                    $('.pr_papertypeblock_name').text(response.paperTypeBlockName);
+                    $('.count').text($('#softcount').val());
+                    $('.total').text(response.total);
+                    $('.delivcost').text(response.deliveryCost);
+                    $('.date-of-readiness').text(response.dateOfReadiness);
+
+
+
+
+
+
+
+
+
+
                     $('#ads input[type=checkbox]').change(function(){
                         var curtotal = parseInt($('#totslpriceor').val());
                         var addprice = 0;
@@ -116,7 +149,7 @@ $(function(){
                                 $.post('include/project_ajax.php',
                                     {
                                         'do':'getPaperTypeBind',
-                                        'pages':$('#softpages').val(),
+                                        'orderid': $('input[name=orderid]').val(),
                                         'cover': $('input[name=cover]').val(),
                                         'size_paper': $('input[name=size]:checked').val()
                                     }, 
@@ -128,9 +161,9 @@ $(function(){
                                         // console.log(jsonResp);
                                         jsonResp.forEach(function(item, index, array) {
                                             if(item.coverType === 'soft') {
-                                                softRes += `<td><label for="bt_${item.bindingId}"><img src="img/bindtype_${item.bindingId}.jpg" border="0" /></label><label for="bt_${item.bindingId}" >${item.bindingName}</label><input id="bt_${item.bindingId}" type="radio" name="binding" value="${item.bindingId}" /></td>`;
+                                                softRes += `<td><label for="bt_${item.bindingId}"><img src="img/bindtype_${item.bindingId}.jpg" border="0" /></label><label for="bt_${item.bindingId}" >${item.bindingName}</label><input id="bt_${item.bindingId}" type="radio" name="binding" data-cover-type="soft" value="${item.bindingId}" /></td>`;
                                             } else if (item.coverType === 'hard') {
-                                                hardRes += `<td><label for="bt_${item.bindingId}"><img src="img/bindtype_${item.bindingId}.jpg" border="0" /></label><label for="bt_${item.bindingId}" >${item.bindingName}</label><input id="bt_${item.bindingId}" type="radio" name="binding" value="${item.bindingId}" /></td>`;
+                                                hardRes += `<td><label for="bt_${item.bindingId}"><img src="img/bindtype_${item.bindingId}.jpg" border="0" /></label><label for="bt_${item.bindingId}" >${item.bindingName}</label><input id="bt_${item.bindingId}" type="radio" name="binding" data-cover-type="hard" value="${item.bindingId}" /></td>`;
                                             }
                                         });
                                         // $('#binding').html(data);
@@ -145,56 +178,7 @@ $(function(){
                                                 $('#additional-services').fadeIn();
 
 
-                                                $('input[name=typedeliv]').change(function(){
-                                                    $('#toadd').fadeIn();
-
-                                                    $('#newaddress').fadeOut();
-                                                    $('#deliveryaddress').fadeOut();
-                                                    $('#providers').fadeOut();
-                                                    $('#deliveryaddress').select();
-                                                    if ($('input[name=typedeliv]:checked').val()=='pickup'){
-                                                        if ($('#isorg').length >0){
-                                                            $('#isorg').fadeIn();
-                                                            if ($('#isorg input[name=isorg]:checked').val()==1){
-                                                                    $('#deliveryaddress').fadeIn();
-                                                            }
-                                                            $('#isorg input[name=isorg]').change(function(){
-                                                                if ($('#isorg input[name=isorg]:checked').val()==1){
-                                                                    $('#deliveryaddress').fadeIn();
-                                                                }else{
-                                                                    $('#deliveryaddress').fadeOut();
-                                                                }
-                                                            });
-                                                            // calctotal(true);
-                                                            
-                                                        }
-                                                        else{
-                                                            // calctotal(true);
-                                                        }
-                                                    }else{
-                                                        $('#selectaddress').show();
-                                                        $('#selectaddressbill').hide();
-                                                        $('#deliveryaddress').fadeIn();
-                                                        $('#deliveryfirm').fadeIn();
-                                                        if ($('#so1_addresses_sel').val()=='new'){
-                                                            $('#newaddress').fadeIn();
-                                                            $('#providers').fadeOut();
-                                                            $('#completeorder').fadeOut();
-                                                            if ($('#isorg').length >0){
-                                                                $('#isorg').fadeOut();
-                                                            }
-                                                            $.post(main_file_name+'?do=orderstep3&a=1',{'do':'getregion', 'countryid':$('#so1_country_sel').val()},function(data){
-                                                               $('#so1_region_sel').html(data);
-                                                               if ($('#so1_region_sel option:selected').hasClass('iscity')){
-                                                                    $('#so15').val($('#so1_region_sel option:selected').text());
-                                                                    $('#so15_tr').hide();
-                                                               }
-                                                            });
-                                                        }else{
-                                                            // calctotal();
-                                                        }
-                                                    }
-                                                });
+                                                
                                             });
                                         });
 
@@ -205,6 +189,60 @@ $(function(){
                 });
             });
         });
+
+        // $('input[name=typedeliv]').change(function(){
+        //     $('#toadd').fadeIn(); // Кнопка далее
+        //     $('#pvz_cdek').fadeOut();
+        //     $('#newaddress').fadeOut();
+        //     $('#deliveryaddress').fadeOut();
+        //     $('#providers').fadeOut();
+        //     $('#deliveryaddress').select();
+        //     if ($('input[name=typedeliv]:checked').val()=='pickup'){
+        //         if ($('#isorg').length >0){
+        //             $('#isorg').fadeIn();
+        //             if ($('#isorg input[name=isorg]:checked').val()==1){
+        //                     $('#deliveryaddress').fadeIn();
+        //             }
+        //             $('#isorg input[name=isorg]').change(function(){
+        //                 if ($('#isorg input[name=isorg]:checked').val()==1){
+        //                     $('#deliveryaddress').fadeIn();
+        //                 }else{
+        //                     $('#deliveryaddress').fadeOut();
+        //                 }
+        //             });
+        //             // calctotal(true);
+                    
+        //         }
+        //         else{
+        //             // calctotal(true);
+        //         }
+        //     } else if ($('input[name=typedeliv]:checked').val()=='pickup-point') {
+
+
+        //     } else {
+        //         $('#selectaddress').show();
+        //         $('#selectaddressbill').hide();
+        //         $('#deliveryaddress').fadeIn();
+        //         $('#deliveryfirm').fadeIn();
+        //         if ($('#so1_addresses_sel').val()=='new'){
+        //             $('#newaddress').fadeIn();
+        //             $('#providers').fadeOut();
+        //             $('#completeorder').fadeOut();
+        //             if ($('#isorg').length >0){
+        //                 $('#isorg').fadeOut();
+        //             }
+        //             $.post(main_file_name+'?do=orderstep2',{'do':'getregion', 'countryid':$('#so1_country_sel').val()},function(data){
+        //                $('#so1_region_sel').html(data);
+        //                if ($('#so1_region_sel option:selected').hasClass('iscity')){
+        //                     $('#so15').val($('#so1_region_sel option:selected').text());
+        //                     $('#so15_tr').hide();
+        //                }
+        //             });
+        //         }else{
+        //             // calctotal();
+        //         }
+        //     }
+        // });
 
         $('input[name=count]').change( evt => {
             calculateMass();
@@ -245,6 +283,27 @@ $(function(){
                 }
                 $('input[name=typedeliv]').prop('disabled', false);
             });
+        }
+
+        function getMass() {
+            var res = false;
+            $.post('include/project_ajax.php',{'do':'getSessionDataForMassa'}, function(data) {
+                if (data != '') {
+                    // console.log(data);
+                    bookData = JSON.parse(data);
+
+                    let bookWidth = bookData.bookWidth;
+                    let bookHeight = bookData.bookHeight;
+                    let pageCount = bookData.pageCount;
+                    let circulation = document.querySelector('input[name=count]').value;
+                    let paperWeight = $('input[name=paperblock]:checked').data( "weight");
+                    let massa = (paperWeight * ((bookHeight * bookWidth) / 1e+9) * circulation * (pageCount / 2 + 10)) * 1000;
+                    // massa = (massa / 1000.1);
+                    console.log(massa);
+                    window.massaForProviders = massa;
+                }
+            });
+            return window.massaForProviders;
         }
 
 
@@ -303,4 +362,126 @@ $(function(){
                 });
              });
         });
+
+        $('#delivery input[name=typedeliv]').change(function(){
+            $('#toadd').fadeIn(); // Кнопка далее
+            $('#pvz_cdek').fadeOut();
+            $('#newaddress').fadeOut();
+            $('#deliveryaddress').fadeOut();
+            $('#providers').fadeOut();
+            $('#deliveryaddress').select();
+            if ($('#delivery input[name=typedeliv]:checked').val()=='pickup'){
+                if ($('#isorg').length >0){
+                    $('#isorg').fadeIn();
+                    if ($('#isorg input[name=isorg]:checked').val()==1){
+                            $('#deliveryaddress').fadeIn();
+                    }
+                    $('#isorg input[name=isorg]').change(function(){
+                        if ($('#isorg input[name=isorg]:checked').val()==1){
+                            $('#deliveryaddress').fadeIn();
+                        }else{
+                            $('#deliveryaddress').fadeOut();
+                        }
+                    });
+                    // calctotalos3(true);
+                    
+                }
+                else{
+                    // calctotalos3(true);
+                }
+            } else if ($('#delivery input[name=typedeliv]:checked').val()=='deliver'){
+                $('#selectaddress').show();
+                $('#selectaddressbill').hide();
+                $('#deliveryaddress').fadeIn();
+                $('#deliveryfirm').fadeIn();
+                if ($('#os3_addresses_sel').val()=='new'){
+                    $('#newaddress').fadeIn();
+                    $('#providers').fadeOut();
+                    $('#completeorder').fadeOut();
+                    if ($('#isorg').length >0){
+                        $('#isorg').fadeOut();
+                    }
+                    $.post(main_file_name+'?do=orderstep2',{'do':'getregion', 'countryid':$('#os3_country_sel').val()},function(data){
+                       $('#os3_region_sel').html(data);
+                       if ($('#os3_region_sel option:selected').hasClass('iscity')){
+                            $('#os35').val($('#os3_region_sel option:selected').text());
+                            $('#os35_tr').hide();
+                       }
+                    });
+                }else{
+                    // calctotalos3();
+                }
+            }
+            else if ($('#delivery input[name=typedeliv]:checked').val()=='pickup-point') {
+                if (window.pvz == undefined) {
+                    $('#os3_total').fadeOut();
+                    $('#completeorder').fadeOut();
+                }
+                else {
+                    $('#pvz_cdek').fadeIn();
+                    // $('#os3_total').fadeIn();
+                    // $('#completeorder').fadeIn();
+
+                    //Вывести итог с учетом доставки ПВЗ
+                    // $('#prwithdeliv').text(parseInt($('#totalcosts').val()) + parseInt(window.pvz.price));
+                }
+            }
+        });
+
+        $('#os3_addresses_sel').change(function() {
+            if ($(this).val()=='new'){
+                $('#newaddress').fadeIn();
+                $('#providers').fadeOut();
+                $('#completeorder').fadeOut();
+                if ($('#isorg').length >0){
+                    $('#isorg').fadeOut();
+                }
+                $.post(main_file_name+'?do=orderstep2',{'do':'getregion', 'countryid':$('#os3_country_sel').val()},function(data){
+                   $('#os3_region_sel').html(data);
+                   if ($('#os3_region_sel option:selected').hasClass('iscity')){
+                        $('#os35').val($('#os3_region_sel option:selected').text());
+                        $('#os35_tr').hide();
+                   }
+                });
+            } else {
+                $('#newaddress').fadeOut();
+                if ($('#delivery input[name=typedeliv]:checked').val()!='pickup'){
+                    providersos3($(this).val());
+                }else{
+                    if ($('#isorg').length >0){
+                        $('#isorg').fadeIn();
+                    }
+                }
+            }
+        });
+
+        function calctotalos3(f){
+            if (typeof(f)=='undefined' && $('#delivery input[name=typedeliv]:checked').val()!='pickup'){
+                var tot = parseInt($('#totalcosts').val())+parseInt($('#os3_providers_sel option:selected').attr('title'));
+                if (isNaN(tot)){
+                    $('#prwithdeliv').text(parseInt($('#totalcosts').val()));
+                    $('#completeorder').fadeOut();
+                }else{
+                   $('#prwithdeliv').text(tot);
+                   $('#completeorder').fadeIn();
+                }
+            }else{
+                $('#prwithdeliv').text(parseInt($('#totalcosts').val()));
+                $('#completeorder').fadeIn();
+            }
+            $('#os3_total').fadeIn();
+            if ($('#isorg').length >0){
+                $('#isorg').fadeIn();
+            }
+        }
+        function providersos3(addressid,f){
+            let massa = getMass();
+            $.post(main_file_name+'?do=orderstep2',{'do':'getproviders', 'addressid':addressid, 'massa': massa, 'orderid':$('#os3_orderid').val()},function(data){
+                $('#providers').fadeIn();
+                $('#os3_providers_sel').html(data);
+                if (f!=false){
+                    calctotalos3();
+                }
+            });
+        }
 })

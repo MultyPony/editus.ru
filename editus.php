@@ -14,10 +14,10 @@ try {
     session_start();
     $engine->load_class('tpl');
     $tpl = new Template();
-    $tpl->addjs('jquery-1.4.2.min');
+    // $tpl->addjs('jquery-1.4.2.min');
     $tpl->addjs('jquery-ui-1.8.4.custom.min');
     $tpl->addjs('ajaxupload');
-    $tpl->addjs('common');
+    // $tpl->addjs('common');
     $tpl->addcss();
     if (Main_config::$serviceoff !=1 || isset($_SESSION['admin'])){
         $engine->tpl=&$tpl;
@@ -27,8 +27,10 @@ try {
         $engine->load_class('settings');
         $engine->settings = new Settings();
         $u = new User();
-        $engine->do = $_GET['do'];
+        $engine->do = isset($_GET['do']) ? $_GET['do'] : '';
         $t=array();
+        
+        /* Не понятно зачем тут вообще
         $db = new Db();
         $db->query("SELECT partnerMainPage
                     FROM PartnersData
@@ -36,62 +38,64 @@ try {
         $href = $db->fetch_array();
         $href = '//'.$href[0]; // В бд пусто, можно оставить нотис
         $logopath = '';
+        */
+
         if (isset($_SESSION['myPartnerId'])){
             $logopath = './partner_logo/logo_'.$_SESSION['userId'].'.jpg';
-        }else{
-            if (isset($_SESSION['partnerId']) && $_SESSION['partnerId']!=0){
+        } else {
+            if (isset($_SESSION['partnerId']) && $_SESSION['partnerId'] != 0){
                 $logopath = './partner_logo/logo_'.$_SESSION['partnerId'].'.jpg';
-            }else{
+            } else {
                 $href = 'index.php';
                 $logopath = './img/logo.gif';
             }
         }
         $t['logohref'] = $href;
         $t['logo'] = $logopath;
+        
         if (!$u->is_user()) {
-            if ($_GET['pj']=='n'){
-                $engine->do = 'listprojects';
-                $engine->call_function($tpl,$u,1);
-            }
-            if ($engine->do == 'login' || ($engine->do != 'fpr' && $engine->do != 'register_partner' && $engine->do != 'register' && $engine->do != 'register' && $engine->do != 'recover_password' && $engine->do != 'activate')) {
+            // if ($_GET['pj']=='n'){
+            //     $engine->do = 'listprojects';
+            //     $engine->call_function($tpl,$u,1);
+            // }
+            if ($engine->do == 'login' || ($engine->do != 'fpr' && $engine->do != 'register_partner' &&  $engine->do != 'register' && $engine->do != 'recover_password' && $engine->do != 'activate')) {
                 $t['auth'] = $u->login($engine);
-            } else 
-            if ($engine->do == 'register') {
+            } else if ($engine->do == 'register') {
                  $t['auth'] = $u->register($engine);
-            }else if($engine->do == 'register_partner'){
+            } else if($engine->do == 'register_partner') {
                 $t['auth'] = $u->register_partner($engine);
             } else if ($engine->do == 'recover_password') {
                 $t['auth'] = $u->recover_password($engine);
             } else if ($engine->do == 'activate') {
                 $t['auth'] = $u->activate($engine);
-            } else if ($engine->do == 'fpr'){
+            } else if ($engine->do == 'fpr') {
                 $u->register_from_partner($engine);
             }
         } else {
             if ($engine->do == 'logout') {
                 $u->logout();
             }
-            if ($engine->do == 'fpr'){
+            if ($engine->do == 'fpr') {
                 $action = 'project.php';
                 header("Location: //".$_SERVER['HTTP_HOST'].'/'.$action);
             }
             if (empty($engine->do)) {
-                $engine->do = 'listprojects';
+                $engine->do = 'listorders';
             }        
             $engine->call_function($tpl, $u);
-            if (empty($tpl->menu)){
+            if (empty($tpl->menu)) {
                 $tpl->menu = array('usermenu' => $engine->showusermenu($u));
             }
             $tpl->set_vars($tpl->menu);
         }
         $tpl->set_vars($t);
         $tpl->fetch('main.tpl');
-        if ($_GET['a']!=1){
+        if ($_GET['a'] != 1) {
             $tpl->display();
         }else{
             echo $t['content'];
         }
-    }else{
+    } else {
         $t['content'] = _SERVICEOFF;
         $tpl->set_vars($t);
         $tpl->fetch('main.tpl');
@@ -99,7 +103,7 @@ try {
     }
 } catch (Exception $exc) {
     echo 'Ошибка в файле ' . $exc->getFile() . " на строке " . $exc->getLine() . "\nСообщение: " . $exc->getMessage() . "\nКод ошибки: " . $exc->getCode() . "\nХод выполнения: " . $exc->getTraceAsString()."\n User: ". $_SESSION['userId'];
-    $engine->mail('debug-editus@banuchka.ru', 'Error', 'Ошибка в файле ' . $exc->getFile() . " на строке " . $exc->getLine() . "\nСообщение: " . $exc->getMessage() . "\nКод ошибки: " . $exc->getCode() . "\nХод выполнения: " . $exc->getTraceAsString()."\n User: ". $_SESSION['userId']);
+    $engine->mail(Main_config::$debugmail, 'Error', 'Ошибка в файле ' . $exc->getFile() . " на строке " . $exc->getLine() . "\nСообщение: " . $exc->getMessage() . "\nКод ошибки: " . $exc->getCode() . "\nХод выполнения: " . $exc->getTraceAsString()."\n User: ". $_SESSION['userId']);
     header("Location: //".$_SERVER['HTTP_HOST'].'/'.Main_config::$main_file_name);
     exit;    
 }

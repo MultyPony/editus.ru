@@ -13,7 +13,7 @@
     <a href="editus.php?do=recover_password"> напомнить пароль</a>
 
 <?php } else { ?>
-    <a href="editus.php?do=listprojects">издать книгу</a>,   
+    <a href="editus.php?do=listorders">издать книгу</a>,   
 <?php 
     $db = new Db();
     $db->query("SELECT SUM(amount) AS amount

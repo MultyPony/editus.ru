@@ -1,47 +1,6 @@
-const bookNameSelector = '#os1_name';
-const authorSelector = '#os1_author';
-const nextBtnSelector = '#toresultblock';
-
 $(function(){
-    let bookName = document.querySelector(bookNameSelector);
-    let author = document.querySelector(authorSelector);
-    let nextBtn = document.querySelector(nextBtnSelector);
-
-    //Отмена отправки формы при нажатии Enter
-    $('form input').keydown(function(e) {
-        if (e.keyCode == 13) {
-        e.preventDefault();
-        return false;
-        }
-    });
-
-    // Проверка полей автора и книги
-    $(nextBtn).click(function() {
-        if (bookName.value == '' || author.value == '' ) {
-            if (bookName.value == '') {
-                $('.error-bookname').fadeIn();
-            } else {
-                $('.error-bookname').fadeOut();
-            }
-
-            if (author.value == '') {
-                $('.error-author').fadeIn();
-            } else {
-                $('.error-author').fadeOut();
-            }
-        } else {
-            $('#authorname').fadeOut();
-            $('#nameandauthorleg').hide();
-            $('#resblockleg').show();
-            $('#resultblock').fadeIn();
-        }
-    });
 
     $('#uploadblock').click(function(){
-        $('#pdf-info').fadeOut();
-        $('#book-parameters-btn').fadeOut();
-        $('#messerror').fadeOut();
-
         $('#uploadblock_file').click();     
     });
 
@@ -73,9 +32,10 @@ $(function(){
         $('#uploadblock').prop('disabled', true);    
         $('#uploadblock').css('cursor','not-allowed');    
         
-        
+        let orderid = $('input[name=orderid]').val();
+
         $.ajax({
-            url: 'upload.php', // point to server-side PHP script 
+            url: `upload.php?do=cover-upload&orderid=${orderid}`, // point to server-side PHP script 
             dataType: 'text',  // what to expect back from the PHP script, if anything
             cache: false,
             contentType: false,
@@ -112,4 +72,5 @@ $(function(){
             }
         });
     });
+
 });

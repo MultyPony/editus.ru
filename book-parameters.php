@@ -247,7 +247,7 @@ require_once './config.inc.php';
 														<input type="radio" name="typedeliv" value="deliver" /> Доставка
 													</label>
 													<label class="inline-label cdek-label">
-														<input type="radio" name="typedeliv" value="pickup-point" onclick='cartWidjet.open()'/> Пункт самовывоза
+														<input type="radio" name="typedeliv" value="pickup-point" onclick='window.cartWidjet.open()'/> Пункт самовывоза
 													</label>
 											</div>
 
@@ -291,6 +291,11 @@ require_once './config.inc.php';
 										<input type="hidden" name="cover" value="soft" />
 										<input type="button" id="topaperblock" class="button" value="Пересчитать" />&nbsp;&nbsp;&nbsp;<input type="submit" class="button red" value="Перейти к дизайну обложки" />
 									</div>
+
+									<input type="text" hidden name="book-width" value="<?php echo $_SESSION['book_width'] ?>">
+									<input type="text" hidden name="book-height" value="<?php echo $_SESSION['book_height'] ?>">	
+									<input type="text" hidden name="volume" value="<?php echo $_SESSION['pages'] ?>">	
+									<input type="text" hidden name="size" value="<?php echo $_SESSION['book_format_id'] ?>">	
 								</form>			
 							
 								<?php //}
@@ -305,27 +310,17 @@ require_once './config.inc.php';
 	<?php include 'footer.php'; ?>
 
 	<script type="text/javascript">
-        var cartWidjet = new ISDEKWidjet({
+        window.cartWidjet = new ISDEKWidjet({
             defaultCity: 'auto',
             cityFrom: 'Москва',
             hidedelt: true,
             popup: true,
-            goods: [{
-                length: 25,
-                width: 17,
-                height: 7,
-                weight: 100, // Изменить вес 
-				
-            }],
             onChoose: function(wat) {
                 window.pvz = wat;
                 window.showPvzFields();
 
             },
         });
-		// <?php //echo round($massa/1000,1); ?>
-
-
     </script>
 
 </body>

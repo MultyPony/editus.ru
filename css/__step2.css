@@ -1,0 +1,28 @@
+label, input {
+    cursor: pointer;
+}
+
+#binding {
+    display: none;
+}
+
+.binding-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lamination-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.lamination__input {
+    margin-right: 0.5em;
+}
+
+#toadd {
+    margin-top: 2em;
+}

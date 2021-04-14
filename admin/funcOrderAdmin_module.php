@@ -51,6 +51,7 @@ function listallorders(&$e,&$t) {
     $tpl->fetch('listallorders.tpl');
     return $tpl->get_tpl();
 }
+
 function vieworderadmin(){
     if (is_numeric($_GET['o'])){
         $db = new Db();

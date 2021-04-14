@@ -40,12 +40,12 @@ class Template {
             if ($e==1){
                 $this->vars[$key]=$var;
             }else{
-                // if (($this->vars[$key]) != undefined) {
+                if (isset($this->vars[$key])) {
                     $this->vars[$key].=$var;
-                // }
-                // else {
-                    // $this->vars[$key]=$var;
-                // }
+                }
+                else {
+                    $this->vars[$key]=$var;
+                }
             }
         }
     }
@@ -69,7 +69,12 @@ class Template {
     public function addcss($filename='styles'){
         $sc = '<link rel="stylesheet" type="text/css" href="'.$this->pathcss.$filename.'.css" media="all" />'."\n\t";
         $this->set_vars(array('headcss'=>$sc), 0);
-    }    
+    }
+    public function __addcss($filename){
+        if (!isset($filename)) return;
+        $sc = '<link rel="stylesheet" type="text/css" href="'.$this->pathcss.$filename.'.css" />'."\n\t";
+        $this->set_vars(array('__headcss'=>$sc), 0);
+    } 
     function xss($s){
         return htmlspecialchars($s,ENT_QUOTES);
         return $s;

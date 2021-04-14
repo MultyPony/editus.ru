@@ -1,4 +1,5 @@
 <?php 
+    session_start();
 
     require_once 'config.inc.php';
     require_once 'include/db_class.php';
@@ -6,30 +7,115 @@
     if (isset($_FILES['file']['tmp_name'])) {
         // Здесь проверка pdf
         $name = $_FILES['file']['name'];
-        $name = "test-image.jpg";
         $new_path_file = __DIR__ . "/uploads/$name";
         $res = move_uploaded_file($_FILES['file']['tmp_name'], $new_path_file);
-
-
-        $res = main_check_pdf($new_path_file);
-
-        // Успешная проверка
-        if ($res[0]) {
-            echo json_encode(array(
-                'success' => $res[0],
-                'formatId' => $res[1]['formatId'],
-                'bookWidth' => $res[1]['formatWidth'],
-                'bookHeight' => $res[1]['formatHeight'],
-                'bookSize' => $res[1]['formatName'],
-                'pageCount' => get_pdf_page_count($new_path_file),
-            ));
-        } else {
-            // echo json_encode(array('error' => 'File not accepted'));
-            echo json_encode(array('error' => $res[1]), JSON_UNESCAPED_UNICODE);
+        
+        if (isset($_GET['do']) && $_GET['do'] == 'cover-upload') {
+            if (!isset($_GET['orderid'])) {
+                echo json_encode(array('error' => 'Возникла ошибка'));
+                return;
+            }
+            $orderid = $_GET['orderid'];
+            $res = cover_check($new_path_file, $orderid);            
+            // Успешная проверка
+            if ($res[0]) {
+                echo json_encode(array(
+                    'success' => $res[0],
+                ));
+            } else {
+                echo json_encode(array('error' => $res[1]), JSON_UNESCAPED_UNICODE);
+            }
         }
+        else {
+            $res = main_check_pdf($new_path_file);
 
+            // Успешная проверка
+            if ($res[0]) {
+                $_SESSION['book_width'] = $res[1]['formatWidth'];
+                $_SESSION['book_height'] = $res[1]['formatHeight'];
+                $_SESSION['book_size'] = $res[1]['formatName'];
+                $_SESSION['formatId'] = $res[1]['formatId'];
+                $pages_count = get_pdf_page_count($new_path_file); 
+                $_SESSION['pages'] = $pages_count;
+    
+                echo json_encode(array(
+                    'success' => $res[0],
+                    'formatId' => $res[1]['formatId'],
+                    'bookWidth' => $res[1]['formatWidth'],
+                    'bookHeight' => $res[1]['formatHeight'],
+                    'bookSize' => $res[1]['formatName'],
+                    'pageCount' => $pages_count,
+                ));
+            } else {
+                echo json_encode(array('error' => $res[1]), JSON_UNESCAPED_UNICODE);
+            }
+        }
     } else {
         echo 'Ничего не пришло';
+    }
+
+    function cover_check($path_file, $orderid) {
+        $result = image_check_DPI300($path_file);
+        
+        if (!$result) {
+            return [false, "Разрешение изображений < 300 DPI"];
+        }
+        
+        $result = get_pdf_page_count($path_file);
+        
+        if ($result > 1 || $result == false) {
+            return [false, "Неверное количество страниц"];
+        }
+        
+        $result = check_all_pages_size($path_file);
+        // $result == [] | false;
+        if (!$result) {
+            return [false, "Файл не соответствует требованиям"];            
+        }
+        
+        // $result = check();
+
+        // Проверка соотв-я размеру обложки
+        $db = new Db();
+        $db->query("SELECT orderSize, orderPages, orderPaperBlock, orderCover
+                    FROM usersorders
+                    WHERE orderid = '".$orderid."' ");
+        $row = $db->fetch_array();
+        $formatId = $row['orderSize'];
+        $page_count = $row['orderPages'];
+        $paperTypeId = $row['orderPaperBlock'];
+        $cover_type = $row['orderCover'];
+    
+        // Ширина и высота блока
+        $db->query("SELECT formatWidth, formatHeight
+                    FROM paperformat 
+                    WHERE formatId = '".$formatId."' ");
+        $row = $db->fetch_array();
+        $width_block = $row['formatWidth'];
+        $height_block = $row['formatHeight'];
+
+        // Плотность бумаги
+        $db->query("SELECT PaperTypeWeight
+                    FROM papertypecostsblock 
+                    WHERE PaperTypeId = '".$paperTypeId."' ");
+        $paper_density = $db->fetch_array()[0];
+
+        if ($cover_type == 'soft') {
+            $spine_thickness = (($page_count * $paper_density) / 1600) + 1;
+            $calculated_width = ($width_block * 2) + $spine_thickness;
+            $calculated_height = $height_block;
+        } else {
+            $spine_thickness = (($page_count * $paper_density) / 1600) + 4;
+            $calculated_width = ($width_block * 2) + 18 + $spine_thickness;
+            $calculated_height = $height_block + 10;
+        }
+
+        // Сравнение: рассчитанные хар-ки и хар-ки загруж-го файла
+        if ($result['width'] != $calculated_width or $result['height'] != $calculated_height) {
+            return [false, "Загруженный макет обложки не соответствует требуемым размерам"];
+        }
+
+        return [true, $result];
     }
 
 
@@ -124,6 +210,27 @@
             }
         }
         return true; // DPI >= 200
+    }
+
+    /*
+        Функция извлекает информация из всех изображений pdf файла.
+        Затем проверяет DPI и если он < 300 возвращает false.
+    */
+
+    function image_check_DPI300($pdf) {
+        $output = null;
+        $ret_val = null;
+
+        $command = "pdfimages -list " . "\"$pdf\"";
+        exec($command, $output, $ret_val);
+        $length = count($output);
+        for ($i=2; $i < $length; $i++) { 
+            $words_array = str_word_count($output[$i], 1, '0..9');
+            if (intval($words_array[12]) < 300) {
+                return false;   // DPI < 200
+            }
+        }
+        return true; // DPI >= 300
     }
 
     /*
